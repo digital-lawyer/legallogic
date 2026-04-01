@@ -11,7 +11,6 @@
   };
 
   const copy = {
-    required: 'Поле не може бути порожнім',
     name: 'Вкажіть ім’я',
     company: 'Вкажіть компанію',
     email: 'Вкажіть коректний email',
@@ -45,15 +44,15 @@
 
   const updateHeader = () => {
     if (!header) return;
-    const isScrolled = window.scrollY > 10;
-    header.dataset.scrolled = String(isScrolled);
+    header.dataset.scrolled = String(window.scrollY > 10);
   };
 
   const closeAccordionItem = (item) => {
     const button = item.querySelector('.faq-trigger');
     const panel = item.querySelector('.faq-panel');
+
     item.classList.remove('is-open');
-    if (button) button.setAttribute('aria-expanded', 'false');
+    button?.setAttribute('aria-expanded', 'false');
     if (panel) panel.hidden = true;
   };
 
@@ -67,7 +66,7 @@
     });
 
     item.classList.add('is-open');
-    if (button) button.setAttribute('aria-expanded', 'true');
+    button?.setAttribute('aria-expanded', 'true');
     if (panel) panel.hidden = false;
   };
 
@@ -80,9 +79,9 @@
         const expanded = button.getAttribute('aria-expanded') === 'true';
         if (expanded) {
           closeAccordionItem(item);
-          return;
+        } else {
+          openAccordionItem(item);
         }
-        openAccordionItem(item);
       });
     });
   };
@@ -138,9 +137,7 @@
       if (error) valid = false;
     });
 
-    if (!valid && firstInvalid) {
-      firstInvalid.focus();
-    }
+    if (!valid && firstInvalid) firstInvalid.focus();
 
     return valid;
   };
@@ -152,12 +149,11 @@
 
     submitButton.disabled = submitting;
     submitButton.textContent = submitting ? 'Надсилаємо…' : 'Надіслати заявку';
-    form.classList.toggle('is-submitting', submitting);
   };
 
   const resetStatus = () => {
-    errorBox.textContent = '';
-    successBox.hidden = true;
+    if (errorBox) errorBox.textContent = '';
+    if (successBox) successBox.hidden = true;
   };
 
   const applyPrefillFromTrigger = (trigger) => {
@@ -181,9 +177,7 @@
 
   const attachPrefillHandlers = () => {
     doc.querySelectorAll('[data-prefill-interest]').forEach((trigger) => {
-      trigger.addEventListener('click', () => {
-        applyPrefillFromTrigger(trigger);
-      });
+      trigger.addEventListener('click', () => applyPrefillFromTrigger(trigger));
     });
   };
 
@@ -245,13 +239,13 @@
         throw new Error(data.error || copy.genericError);
       }
 
-      successBox.hidden = false;
-      errorBox.textContent = '';
+      if (successBox) successBox.hidden = false;
+      if (errorBox) errorBox.textContent = '';
       form.reset();
       trackEvent('form_success', { interest: payload.interest || '' });
-      successBox.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      successBox?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     } catch (error) {
-      errorBox.textContent = error instanceof Error ? error.message : copy.genericError;
+      if (errorBox) errorBox.textContent = error instanceof Error ? error.message : copy.genericError;
     } finally {
       setSubmitting(false);
     }
@@ -261,6 +255,7 @@
     ['name', 'company', 'email', 'interest', 'message'].forEach((name) => {
       const field = form.elements.namedItem(name);
       if (!field) return;
+
       field.addEventListener('blur', () => setFieldError(field, validateField(field)));
       field.addEventListener('input', () => {
         if (field.closest('.field-group')?.classList.contains('is-invalid')) {
