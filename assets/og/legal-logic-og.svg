@@ -1,0 +1,53 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="40" fill="#F7F9FC"/>
+  <rect x="48" y="48" width="1104" height="534" rx="32" fill="url(#bg)" stroke="#D8E3F0"/>
+  <g opacity="0.35">
+    <path d="M96 160H1104" stroke="#D5DFEC"/>
+    <path d="M96 224H1104" stroke="#D5DFEC"/>
+    <path d="M96 288H1104" stroke="#D5DFEC"/>
+    <path d="M96 352H1104" stroke="#D5DFEC"/>
+    <path d="M96 416H1104" stroke="#D5DFEC"/>
+    <path d="M96 480H1104" stroke="#D5DFEC"/>
+    <path d="M224 96V534" stroke="#D5DFEC"/>
+    <path d="M352 96V534" stroke="#D5DFEC"/>
+    <path d="M480 96V534" stroke="#D5DFEC"/>
+    <path d="M608 96V534" stroke="#D5DFEC"/>
+    <path d="M736 96V534" stroke="#D5DFEC"/>
+    <path d="M864 96V534" stroke="#D5DFEC"/>
+    <path d="M992 96V534" stroke="#D5DFEC"/>
+  </g>
+  <g>
+    <rect x="126" y="122" width="88" height="88" rx="24" fill="#FFFFFF" stroke="#D8E3F0"/>
+    <path d="M148 166L170 144L192 166L170 188L148 166Z" stroke="#10233B" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M166 149L153 166L166 183M174 149L187 166L174 183" stroke="#10B6C6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="126" y="278" fill="#0F2742" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="700">Legal Logic</text>
+  <text x="126" y="352" fill="#47586F" font-family="Inter, Arial, sans-serif" font-size="32">Юридична підтримка для ІТ-компаній</text>
+  <g opacity="0.98">
+    <path d="M843 165L955 277L843 389L731 277L843 165Z" stroke="url(#diamond)" stroke-width="8"/>
+    <path d="M843 197L923 277L843 357L763 277L843 197Z" stroke="url(#diamond)" stroke-width="5" opacity="0.7"/>
+    <path d="M824 219L784 277L824 335M862 219L902 277L862 335" stroke="url(#diamond)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <rect x="944" y="118" width="150" height="88" rx="20" fill="#FFFFFF" stroke="#D8E3F0"/>
+    <rect x="964" y="138" width="72" height="28" rx="14" fill="#E8F9FB"/>
+    <text x="980" y="158" fill="#0B9AAA" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">NDA</text>
+    <text x="964" y="186" fill="#10233B" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">В роботі</text>
+  </g>
+  <g>
+    <rect x="918" y="392" width="176" height="94" rx="20" fill="#FFFFFF" stroke="#D8E3F0"/>
+    <rect x="938" y="412" width="102" height="28" rx="14" fill="#E8F9FB"/>
+    <text x="954" y="432" fill="#0B9AAA" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">Redlines</text>
+    <text x="938" y="462" fill="#10233B" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">На погодженні</text>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="600" y1="48" x2="600" y2="582" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EEF3FB"/>
+    </linearGradient>
+    <linearGradient id="diamond" x1="731" y1="165" x2="955" y2="389" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F2742"/>
+      <stop offset="1" stop-color="#10B6C6"/>
+    </linearGradient>
+  </defs>
+</svg>
