@@ -17,54 +17,38 @@
     interest: 'Оберіть потрібний варіант',
     message: 'Додайте короткий опис задачі',
     messageAlt: 'Додайте короткий опис, щоб ми зрозуміли запит',
-    genericError: 'Не вдалося надіслати заявку. Спробуйте ще раз або напишіть у Telegram чи на email.',
+    genericError: 'Не вдалося надіслати заявку. Спробуйте ще раз або напишіть на hello@legallogic.org.',
   };
 
   const trackEvent = (name, detail = {}) => {
-    const payload = {
-      event: name,
-      ...detail,
-      path: window.location.pathname,
-      ts: Date.now(),
-    };
-
+    const payload = { event: name, ...detail, path: window.location.pathname, ts: Date.now() };
     window.dispatchEvent(new CustomEvent('ll:track', { detail: payload }));
-
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(payload);
-
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', name, detail);
-    }
-
-    if (typeof window.plausible === 'function') {
-      window.plausible(name, { props: detail });
-    }
+    if (typeof window.gtag === 'function') window.gtag('event', name, detail);
+    if (typeof window.plausible === 'function') window.plausible(name, { props: detail });
   };
 
   const updateHeader = () => {
     if (!header) return;
-    header.dataset.scrolled = String(window.scrollY > 10);
+    header.dataset.scrolled = String(window.scrollY > 8);
   };
 
   const closeAccordionItem = (item) => {
     const button = item.querySelector('.faq-trigger');
     const panel = item.querySelector('.faq-panel');
-
     item.classList.remove('is-open');
     button?.setAttribute('aria-expanded', 'false');
     if (panel) panel.hidden = true;
   };
 
   const openAccordionItem = (item) => {
-    const accordion = item.closest('[data-accordion]');
-    const button = item.querySelector('.faq-trigger');
-    const panel = item.querySelector('.faq-panel');
-
-    accordion?.querySelectorAll('.faq-item').forEach((node) => {
+    const parent = item.closest('[data-accordion]');
+    parent?.querySelectorAll('.faq-item').forEach((node) => {
       if (node !== item) closeAccordionItem(node);
     });
-
+    const button = item.querySelector('.faq-trigger');
+    const panel = item.querySelector('.faq-panel');
     item.classList.add('is-open');
     button?.setAttribute('aria-expanded', 'true');
     if (panel) panel.hidden = false;
@@ -74,63 +58,47 @@
     doc.querySelectorAll('[data-accordion] .faq-item').forEach((item) => {
       const button = item.querySelector('.faq-trigger');
       if (!button) return;
-
       button.addEventListener('click', () => {
-        const expanded = button.getAttribute('aria-expanded') === 'true';
-        if (expanded) {
-          closeAccordionItem(item);
-        } else {
-          openAccordionItem(item);
-        }
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) closeAccordionItem(item);
+        else openAccordionItem(item);
       });
     });
   };
 
+  const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
   const setFieldError = (field, message = '') => {
     const group = field.closest('.field-group');
     const errorNode = doc.getElementById(`error-${field.name}`);
-    const hasError = Boolean(message);
-
-    group?.classList.toggle('is-invalid', hasError);
-    field.setAttribute('aria-invalid', hasError ? 'true' : 'false');
-
-    if (errorNode) {
-      errorNode.textContent = message;
-    }
+    const invalid = Boolean(message);
+    group?.classList.toggle('is-invalid', invalid);
+    field.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+    if (errorNode) errorNode.textContent = message;
   };
-
-  const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
   const validateField = (field) => {
     const value = field.value.trim();
-
     switch (field.name) {
-      case 'name':
-        return value ? '' : copy.name;
-      case 'company':
-        return value ? '' : copy.company;
-      case 'email':
-        if (!value) return copy.email;
-        return isValidEmail(value) ? '' : copy.email;
-      case 'interest':
-        return value ? '' : copy.interest;
+      case 'name': return value ? '' : copy.name;
+      case 'company': return value ? '' : copy.company;
+      case 'email': return value && isValidEmail(value) ? '' : copy.email;
+      case 'interest': return value ? '' : copy.interest;
       case 'message':
         if (!value) return copy.message;
         return value.length >= 12 ? '' : copy.messageAlt;
-      default:
-        return '';
+      default: return '';
     }
   };
 
   const validateForm = () => {
-    const fields = ['name', 'company', 'email', 'interest', 'message']
-      .map((name) => form.elements.namedItem(name))
-      .filter(Boolean);
-
+    const names = ['name', 'company', 'email', 'interest', 'message'];
     let firstInvalid = null;
     let valid = true;
 
-    fields.forEach((field) => {
+    names.forEach((name) => {
+      const field = form.elements.namedItem(name);
+      if (!field) return;
       const error = validateField(field);
       setFieldError(field, error);
       if (error && !firstInvalid) firstInvalid = field;
@@ -138,31 +106,28 @@
     });
 
     if (!valid && firstInvalid) firstInvalid.focus();
-
     return valid;
+  };
+
+  const resetStatus = () => {
+    errorBox.textContent = '';
+    successBox.hidden = true;
   };
 
   const setSubmitting = (submitting) => {
     state.submitting = submitting;
-    const submitButton = form.querySelector('button[type="submit"]');
-    if (!submitButton) return;
-
-    submitButton.disabled = submitting;
-    submitButton.textContent = submitting ? 'Надсилаємо…' : 'Надіслати заявку';
-  };
-
-  const resetStatus = () => {
-    if (errorBox) errorBox.textContent = '';
-    if (successBox) successBox.hidden = true;
+    const button = form.querySelector('button[type="submit"]');
+    if (!button) return;
+    button.disabled = submitting;
+    button.textContent = submitting ? 'Надсилаємо…' : 'Надіслати заявку';
   };
 
   const applyPrefillFromTrigger = (trigger) => {
     if (!form || !trigger) return;
-
+    const interest = trigger.dataset.prefillInterest;
+    const packageName = trigger.dataset.prefillPackage;
     const interestField = form.elements.namedItem('interest');
     const messageField = form.elements.namedItem('message');
-    const packageName = trigger.dataset.prefillPackage;
-    const interest = trigger.dataset.prefillInterest;
 
     if (interestField && interest) {
       interestField.value = interest;
@@ -175,13 +140,7 @@
     }
   };
 
-  const attachPrefillHandlers = () => {
-    doc.querySelectorAll('[data-prefill-interest]').forEach((trigger) => {
-      trigger.addEventListener('click', () => applyPrefillFromTrigger(trigger));
-    });
-  };
-
-  const attachTrackingHandlers = () => {
+  const setupTracking = () => {
     trackEvent('page_view');
 
     doc.querySelectorAll('[data-track]').forEach((element) => {
@@ -195,14 +154,17 @@
       });
     });
 
-    const depthMarks = [50, 75, 90];
-    window.addEventListener('scroll', () => {
-      const docHeight = doc.documentElement.scrollHeight - window.innerHeight;
-      if (docHeight <= 0) return;
-      const scrolled = Math.round((window.scrollY / docHeight) * 100);
+    doc.querySelectorAll('[data-prefill-interest]').forEach((trigger) => {
+      trigger.addEventListener('click', () => applyPrefillFromTrigger(trigger));
+    });
 
-      depthMarks.forEach((mark) => {
-        if (scrolled >= mark && !state.trackedDepths.has(mark)) {
+    const marks = [50, 75, 90];
+    window.addEventListener('scroll', () => {
+      const height = doc.documentElement.scrollHeight - window.innerHeight;
+      if (height <= 0) return;
+      const progress = Math.round((window.scrollY / height) * 100);
+      marks.forEach((mark) => {
+        if (progress >= mark && !state.trackedDepths.has(mark)) {
           state.trackedDepths.add(mark);
           trackEvent(`scroll_depth_${mark}`);
         }
@@ -210,52 +172,10 @@
     }, { passive: true });
   };
 
-  const submitForm = async (event) => {
-    event.preventDefault();
-    resetStatus();
-
-    if (state.submitting) return;
-    if (!validateForm()) return;
-
-    const formData = new FormData(form);
-    const payload = Object.fromEntries(formData.entries());
-
-    trackEvent('form_submit', { interest: payload.interest || '' });
-    setSubmitting(true);
-
-    try {
-      const response = await fetch('/api/lead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok || data.ok !== true) {
-        throw new Error(data.error || copy.genericError);
-      }
-
-      if (successBox) successBox.hidden = false;
-      if (errorBox) errorBox.textContent = '';
-      form.reset();
-      trackEvent('form_success', { interest: payload.interest || '' });
-      successBox?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    } catch (error) {
-      if (errorBox) errorBox.textContent = error instanceof Error ? error.message : copy.genericError;
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   const setupValidation = () => {
     ['name', 'company', 'email', 'interest', 'message'].forEach((name) => {
       const field = form.elements.namedItem(name);
       if (!field) return;
-
       field.addEventListener('blur', () => setFieldError(field, validateField(field)));
       field.addEventListener('input', () => {
         if (field.closest('.field-group')?.classList.contains('is-invalid')) {
@@ -265,11 +185,40 @@
     });
   };
 
+  const submitForm = async (event) => {
+    event.preventDefault();
+    if (state.submitting) return;
+    resetStatus();
+
+    if (!validateForm()) return;
+
+    const payload = Object.fromEntries(new FormData(form).entries());
+    trackEvent('form_submit', { interest: payload.interest || '' });
+    setSubmitting(true);
+
+    try {
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || data.ok !== true) throw new Error(data.error || copy.genericError);
+
+      form.reset();
+      successBox.hidden = false;
+      trackEvent('form_success', { interest: payload.interest || '' });
+      successBox.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    } catch (error) {
+      errorBox.textContent = error instanceof Error ? error.message : copy.genericError;
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   updateHeader();
   setupAccordion();
-  attachPrefillHandlers();
-  attachTrackingHandlers();
-
+  setupTracking();
   window.addEventListener('scroll', updateHeader, { passive: true });
   window.addEventListener('resize', updateHeader);
 
