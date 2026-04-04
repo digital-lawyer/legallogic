@@ -1,61 +1,55 @@
-# Legal Logic landing v5
+# Legal Logic landing
 
-Нова статична версія лендингу в більш product-led / Linear-inspired напрямку: чистіша композиція, м'якша типографіка, світла нейтральна палітра з фіолетово-індиговим акцентом, оновлені назви пакетів і окремий стартовий формат `Contract System Review`.
+Статичний MVP-лендинг для Cloudflare Pages з мінімальним JavaScript і однією Pages Function для форми.
 
 ## Структура
 
-- `index.html` — основна сторінка
-- `main.css` — уся стилістика
-- `main.js` — sticky header, FAQ, tracking hooks, form UX
-- `functions/api/lead.js` — Pages Function для форми
-- `_headers`, `_redirects` — конфігурація для Cloudflare Pages
-- `privacy-policy.html`, `terms-of-use.html` — тимчасові legal pages
-- `assets/og/legal-logic-og.png` — OG image
-
-## Контакти
-
-У коді вже зашиті:
-
-- `hello@legallogic.org`
-- `https://t.me/legallogic`
-- `https://legallogic.org/`
-
-Якщо потрібно змінити їх, оновіть `index.html` і legal pages.
-
-## Форма
-
-Форма надсилає `POST /api/lead` у Pages Function. Для production додайте env var:
-
-- `LEAD_WEBHOOK_URL`
-
-Без цього заявки не будуть доставлятися у зовнішній workflow.
+```text
+legal-logic-landing/
+├── index.html
+├── main.css
+├── main.js
+├── _headers
+├── _redirects
+├── README.md
+└── functions/
+    └── api/
+        └── contact.js
+```
 
 ## Локальний запуск
 
-### Статично
+Можна відкрити `index.html` напряму для перевірки верстки.
+Для локального тесту Pages Function:
 
 ```bash
-python -m http.server 8787
-```
-
-### З Pages Functions
-
-```bash
+npm install -g wrangler
 wrangler pages dev .
 ```
 
-## Деплой
+## Cloudflare Pages
 
-1. Завантажте проект у Git-репозиторій.
-2. Створіть Pages project у Cloudflare.
-3. Build preset — `None`.
-4. Build command — порожньо.
-5. Output directory — `/`.
-6. Додайте `LEAD_WEBHOOK_URL`.
+- Framework preset: `None`
+- Build command: leave empty
+- Build output directory: `/`
+- Root directory: repository root
 
-## Що ще бажано зробити перед production
+## Environment variables
 
-- замінити тимчасові legal pages на фінальні;
-- перевірити copy та при потребі дошліфувати конкретні секції;
-- додати Cloudflare Web Analytics або GA4;
-- за потреби оновити OG image під фінальний launch.
+Для форми через Resend додайте в Cloudflare Pages:
+
+- `RESEND_API_KEY`
+- `RESEND_TO`
+- `RESEND_FROM` (optional)
+
+Без цих змінних форма віддасть помилку налаштування бекенду.
+
+## Що замінити перед production
+
+- canonical URL і OG URL в `index.html`
+- `og:image`
+- email і Telegram в footer
+- buyer-facing copy на фінальну версію
+- ціни й місткість пакетів
+- реальні testimonial quotes
+- якщо потрібно, тексти privacy page та посилання на неї

@@ -1,229 +1,253 @@
 (() => {
-  const doc = document;
-  const header = doc.querySelector('.site-header');
-  const form = doc.getElementById('lead-form');
-  const successBox = doc.getElementById('form-success');
-  const errorBox = doc.getElementById('form-error');
+  const header = document.querySelector('[data-header]');
+  const nav = document.querySelector('[data-nav]');
+  const navToggle = document.querySelector('[data-nav-toggle]');
+  const fadeTargets = document.querySelectorAll('.fade-in');
+  const accordion = document.querySelector('[data-accordion]');
+  const form = document.querySelector('[data-contact-form]');
+  const formPanel = document.querySelector('[data-form-panel]');
+  const formStatus = document.querySelector('[data-form-status]');
+  const startedAtInput = document.querySelector('[data-started-at]');
+  const trackableElements = document.querySelectorAll('[data-track]');
 
-  const state = {
-    submitting: false,
-    trackedDepths: new Set(),
-  };
+  const pushTrackingEvent = (eventName, details = {}) => {
+    const payload = {
+      event: 'legal_logic_ui',
+      ui_event: eventName,
+      ...details,
+    };
 
-  const copy = {
-    name: 'Вкажіть ім’я',
-    company: 'Вкажіть компанію',
-    email: 'Вкажіть коректний email',
-    interest: 'Оберіть потрібний варіант',
-    message: 'Додайте короткий опис задачі',
-    messageAlt: 'Додайте короткий опис, щоб ми зрозуміли запит',
-    genericError: 'Не вдалося надіслати заявку. Спробуйте ще раз або напишіть на hello@legallogic.org.',
-  };
+    window.dispatchEvent(new CustomEvent('legal-logic:track', { detail: payload }));
 
-  const trackEvent = (name, detail = {}) => {
-    const payload = { event: name, ...detail, path: window.location.pathname, ts: Date.now() };
-    window.dispatchEvent(new CustomEvent('ll:track', { detail: payload }));
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(payload);
-    if (typeof window.gtag === 'function') window.gtag('event', name, detail);
-    if (typeof window.plausible === 'function') window.plausible(name, { props: detail });
+    if (Array.isArray(window.dataLayer)) {
+      window.dataLayer.push(payload);
+    }
   };
 
   const updateHeader = () => {
     if (!header) return;
-    header.dataset.scrolled = String(window.scrollY > 8);
+    const isScrolled = window.scrollY > 16;
+    header.classList.toggle('is-scrolled', isScrolled);
   };
 
-  const closeAccordionItem = (item) => {
-    const button = item.querySelector('.faq-trigger');
-    const panel = item.querySelector('.faq-panel');
-    item.classList.remove('is-open');
-    button?.setAttribute('aria-expanded', 'false');
-    if (panel) panel.hidden = true;
+  const closeNav = () => {
+    if (!nav || !navToggle) return;
+    nav.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    header?.classList.remove('is-open');
   };
 
-  const openAccordionItem = (item) => {
-    const parent = item.closest('[data-accordion]');
-    parent?.querySelectorAll('.faq-item').forEach((node) => {
-      if (node !== item) closeAccordionItem(node);
-    });
-    const button = item.querySelector('.faq-trigger');
-    const panel = item.querySelector('.faq-panel');
-    item.classList.add('is-open');
-    button?.setAttribute('aria-expanded', 'true');
-    if (panel) panel.hidden = false;
-  };
-
-  const setupAccordion = () => {
-    doc.querySelectorAll('[data-accordion] .faq-item').forEach((item) => {
-      const button = item.querySelector('.faq-trigger');
-      if (!button) return;
-      button.addEventListener('click', () => {
-        const isExpanded = button.getAttribute('aria-expanded') === 'true';
-        if (isExpanded) closeAccordionItem(item);
-        else openAccordionItem(item);
-      });
-    });
-  };
-
-  const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-
-  const setFieldError = (field, message = '') => {
-    const group = field.closest('.field-group');
-    const errorNode = doc.getElementById(`error-${field.name}`);
-    const invalid = Boolean(message);
-    group?.classList.toggle('is-invalid', invalid);
-    field.setAttribute('aria-invalid', invalid ? 'true' : 'false');
-    if (errorNode) errorNode.textContent = message;
-  };
-
-  const validateField = (field) => {
-    const value = field.value.trim();
-    switch (field.name) {
-      case 'name': return value ? '' : copy.name;
-      case 'company': return value ? '' : copy.company;
-      case 'email': return value && isValidEmail(value) ? '' : copy.email;
-      case 'interest': return value ? '' : copy.interest;
-      case 'message':
-        if (!value) return copy.message;
-        return value.length >= 12 ? '' : copy.messageAlt;
-      default: return '';
-    }
-  };
-
-  const validateForm = () => {
-    const names = ['name', 'company', 'email', 'interest', 'message'];
-    let firstInvalid = null;
-    let valid = true;
-
-    names.forEach((name) => {
-      const field = form.elements.namedItem(name);
-      if (!field) return;
-      const error = validateField(field);
-      setFieldError(field, error);
-      if (error && !firstInvalid) firstInvalid = field;
-      if (error) valid = false;
-    });
-
-    if (!valid && firstInvalid) firstInvalid.focus();
-    return valid;
-  };
-
-  const resetStatus = () => {
-    errorBox.textContent = '';
-    successBox.hidden = true;
-  };
-
-  const setSubmitting = (submitting) => {
-    state.submitting = submitting;
-    const button = form.querySelector('button[type="submit"]');
-    if (!button) return;
-    button.disabled = submitting;
-    button.textContent = submitting ? 'Надсилаємо…' : 'Надіслати заявку';
-  };
-
-  const applyPrefillFromTrigger = (trigger) => {
-    if (!form || !trigger) return;
-    const interest = trigger.dataset.prefillInterest;
-    const packageName = trigger.dataset.prefillPackage;
-    const interestField = form.elements.namedItem('interest');
-    const messageField = form.elements.namedItem('message');
-
-    if (interestField && interest) {
-      interestField.value = interest;
-      setFieldError(interestField, '');
-    }
-
-    if (messageField && packageName && !messageField.value.trim()) {
-      messageField.value = `Цікавить пакет ${packageName}.`;
-      setFieldError(messageField, '');
-    }
-  };
-
-  const setupTracking = () => {
-    trackEvent('page_view');
-
-    doc.querySelectorAll('[data-track]').forEach((element) => {
-      element.addEventListener('click', () => {
-        const eventName = element.dataset.track;
-        if (!eventName) return;
-        trackEvent(eventName, {
-          text: element.textContent.trim(),
-          href: element.getAttribute('href') || '',
-        });
-      });
-    });
-
-    doc.querySelectorAll('[data-prefill-interest]').forEach((trigger) => {
-      trigger.addEventListener('click', () => applyPrefillFromTrigger(trigger));
-    });
-
-    const marks = [50, 75, 90];
-    window.addEventListener('scroll', () => {
-      const height = doc.documentElement.scrollHeight - window.innerHeight;
-      if (height <= 0) return;
-      const progress = Math.round((window.scrollY / height) * 100);
-      marks.forEach((mark) => {
-        if (progress >= mark && !state.trackedDepths.has(mark)) {
-          state.trackedDepths.add(mark);
-          trackEvent(`scroll_depth_${mark}`);
-        }
-      });
-    }, { passive: true });
-  };
-
-  const setupValidation = () => {
-    ['name', 'company', 'email', 'interest', 'message'].forEach((name) => {
-      const field = form.elements.namedItem(name);
-      if (!field) return;
-      field.addEventListener('blur', () => setFieldError(field, validateField(field)));
-      field.addEventListener('input', () => {
-        if (field.closest('.field-group')?.classList.contains('is-invalid')) {
-          setFieldError(field, validateField(field));
-        }
-      });
-    });
-  };
-
-  const submitForm = async (event) => {
-    event.preventDefault();
-    if (state.submitting) return;
-    resetStatus();
-
-    if (!validateForm()) return;
-
-    const payload = Object.fromEntries(new FormData(form).entries());
-    trackEvent('form_submit', { interest: payload.interest || '' });
-    setSubmitting(true);
-
-    try {
-      const response = await fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok || data.ok !== true) throw new Error(data.error || copy.genericError);
-
-      form.reset();
-      successBox.hidden = false;
-      trackEvent('form_success', { interest: payload.interest || '' });
-      successBox.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    } catch (error) {
-      errorBox.textContent = error instanceof Error ? error.message : copy.genericError;
-    } finally {
-      setSubmitting(false);
-    }
+  const openNav = () => {
+    if (!nav || !navToggle) return;
+    nav.classList.add('is-open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    header?.classList.add('is-open');
   };
 
   updateHeader();
-  setupAccordion();
-  setupTracking();
   window.addEventListener('scroll', updateHeader, { passive: true });
-  window.addEventListener('resize', updateHeader);
 
-  if (form) {
-    setupValidation();
-    form.addEventListener('submit', submitForm);
+  if (nav && navToggle) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = nav.classList.contains('is-open');
+      if (isOpen) {
+        closeNav();
+      } else {
+        openNav();
+      }
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 820) {
+          closeNav();
+        }
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!nav.classList.contains('is-open')) return;
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (!header?.contains(target)) {
+        closeNav();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 820) {
+        closeNav();
+      }
+    });
+  }
+
+  if ('IntersectionObserver' in window && fadeTargets.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: '0px 0px -6% 0px',
+      }
+    );
+
+    fadeTargets.forEach((target) => observer.observe(target));
+  } else {
+    fadeTargets.forEach((target) => target.classList.add('is-visible'));
+  }
+
+  if (accordion) {
+    const items = accordion.querySelectorAll('.faq-item');
+
+    const closeItem = (item) => {
+      const button = item.querySelector('.faq-trigger');
+      const panel = item.querySelector('.faq-panel');
+      if (!button || !panel) return;
+      button.setAttribute('aria-expanded', 'false');
+      panel.hidden = true;
+    };
+
+    const openItem = (item) => {
+      const button = item.querySelector('.faq-trigger');
+      const panel = item.querySelector('.faq-panel');
+      if (!button || !panel) return;
+      button.setAttribute('aria-expanded', 'true');
+      panel.hidden = false;
+    };
+
+    items.forEach((item) => {
+      const button = item.querySelector('.faq-trigger');
+      if (!button) return;
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        items.forEach((other) => {
+          if (other !== item) closeItem(other);
+        });
+        if (isExpanded) {
+          closeItem(item);
+        } else {
+          openItem(item);
+        }
+      });
+    });
+  }
+
+  trackableElements.forEach((element) => {
+    element.addEventListener('click', () => {
+      pushTrackingEvent(element.dataset.track || 'unknown_click', {
+        target_text: element.textContent?.trim() || '',
+      });
+    });
+  });
+
+  const setFieldError = (fieldElement, hasError) => {
+    const wrapper = fieldElement.closest('.field');
+    if (!wrapper) return;
+    wrapper.classList.toggle('is-error', hasError);
+  };
+
+  const validateForm = () => {
+    if (!form) return false;
+    let valid = true;
+    const requiredFields = form.querySelectorAll('[required]');
+
+    requiredFields.forEach((field) => {
+      const input = field;
+      let fieldValid = true;
+
+      if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement || input instanceof HTMLSelectElement) {
+        if (!input.value.trim()) {
+          fieldValid = false;
+        }
+
+        if (fieldValid && input.type === 'email') {
+          fieldValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+        }
+      }
+
+      setFieldError(input, !fieldValid);
+      if (!fieldValid) valid = false;
+    });
+
+    return valid;
+  };
+
+  if (form && formPanel && formStatus) {
+    startedAtInput.value = String(Date.now());
+
+    form.addEventListener('input', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement)) return;
+      if (target.required || target.type === 'email') {
+        setFieldError(target, false);
+      }
+      formStatus.textContent = '';
+      formStatus.className = 'form-status';
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      formStatus.textContent = '';
+      formStatus.className = 'form-status';
+
+      if (!validateForm()) {
+        formStatus.textContent = 'Перевірте обов’язкові поля.';
+        formStatus.classList.add('is-error');
+        const firstError = form.querySelector('.field.is-error input, .field.is-error select, .field.is-error textarea');
+        if (firstError instanceof HTMLElement) {
+          firstError.focus();
+        }
+        return;
+      }
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (!(submitButton instanceof HTMLButtonElement)) return;
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Надсилаємо…';
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+          },
+          body: formData,
+        });
+
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok || payload.ok !== true) {
+          throw new Error(payload.error || 'Не вдалося надіслати форму.');
+        }
+
+        pushTrackingEvent('form_success', {
+          interest: String(formData.get('interest') || ''),
+        });
+
+        formPanel.classList.add('is-success');
+        formPanel.innerHTML = `
+          <div class="success-panel panel">
+            <div class="eyebrow">Запит надіслано</div>
+            <h3>Дякую. Запит отримано.</h3>
+            <p>Повернемось із короткою відповіддю після перегляду контексту.</p>
+          </div>
+        `;
+      } catch (error) {
+        formStatus.textContent = error instanceof Error ? error.message : 'Сталася помилка. Спробуйте ще раз.';
+        formStatus.classList.add('is-error');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Надіслати запит';
+      }
+    });
   }
 })();

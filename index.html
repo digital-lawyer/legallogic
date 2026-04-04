@@ -1,608 +1,698 @@
 <!doctype html>
 <html lang="uk">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Legal Logic — юридична підтримка для digital-команд та ІТ-бізнесу</title>
-    <meta name="description" content="Legal Logic допомагає digital-командам та ІТ-бізнесу швидше погоджувати договори, зменшувати хаос у документах і тримати юридичну роботу в зрозумілому процесі.">
-    <meta name="theme-color" content="#f7f7f8">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="uk_UA">
-    <meta property="og:title" content="Legal Logic — юридична підтримка для digital-команд та ІТ-бізнесу">
-    <meta property="og:description" content="Регулярна юридична підтримка для договорів, правок від контрагентів, шаблонів і коротких бізнес-запитів. Пакети Basic, Professional, Extended та Contract System Review.">
-    <meta property="og:url" content="https://legallogic.org/">
-    <meta property="og:image" content="https://legallogic.org/assets/og/legal-logic-og.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Legal Logic — юридична підтримка для digital-команд та ІТ-бізнесу">
-    <meta name="twitter:description" content="Регулярна юридична підтримка для договорів, правок від контрагентів, шаблонів і коротких бізнес-запитів. Пакети Basic, Professional, Extended та Contract System Review.">
-    <meta name="twitter:image" content="https://legallogic.org/assets/og/legal-logic-og.png">
-    <link rel="canonical" href="https://legallogic.org/">
-    <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="%23f4f5fb"/><path d="M18 32 32 18 46 32 32 46Z" fill="none" stroke="%23111226" stroke-width="6" stroke-linejoin="round"/><path d="M29 22 20 32l9 10M35 22l9 10-9 10" fill="none" stroke="%235e6ad2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
-    <link rel="preload" href="/main.css" as="style">
-    <link rel="stylesheet" href="/main.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Legal Logic — юридична підтримка для ІТ-компаній</title>
+    <meta
+      name="description"
+      content="Legal Logic — зовнішня юридична підтримка для невеликих ІТ-компаній в Україні: регулярна договірна робота, NDA, redlines, шаблони та Contract System Review."
+    />
+    <meta property="og:title" content="Legal Logic — юридична підтримка для ІТ-компаній" />
+    <meta
+      property="og:description"
+      content="Темний product-led landing для сервісу зовнішньої юридичної підтримки: пакети Basic, Professional, Extended і Contract System Review."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:image" content="https://example.com/og-image.jpg" />
+    <meta name="theme-color" content="#090b11" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href="https://example.com/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2386a9ff'/%3E%3Cstop offset='1' stop-color='%236670ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%23090b11'/%3E%3Cpath d='M18 16h10l10 10 8-10h10L42 32l14 16H46l-8-10-10 10H18l14-16z' fill='url(%23g)'/%3E%3C/svg%3E"
+    />
+    <link rel="preload" href="./main.css" as="style" />
+    <link rel="stylesheet" href="./main.css" />
+    <script defer src="./main.js"></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Перейти до основного контенту</a>
+    <a class="skip-link" href="#main">Перейти до контенту</a>
 
-    <header class="site-header" id="top" data-scrolled="false">
-      <div class="container header-shell">
+    <div class="page-shell" aria-hidden="true">
+      <div class="ambient ambient-a"></div>
+      <div class="ambient ambient-b"></div>
+      <div class="ambient-grid"></div>
+    </div>
+
+    <header class="site-header" data-header>
+      <div class="container header-inner">
         <a class="brand" href="#top" aria-label="Legal Logic — на початок сторінки">
           <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 64 64" focusable="false" aria-hidden="true">
-              <path d="M18 32 32 18 46 32 32 46Z" fill="none" stroke="currentColor" stroke-width="4.8" stroke-linejoin="round"></path>
-              <path d="M29 22 20 32l9 10M35 22l9 10-9 10" fill="none" stroke="currentColor" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"></path>
+            <svg viewBox="0 0 48 48" role="img" focusable="false">
+              <defs>
+                <linearGradient id="brand-gradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#9db6ff"></stop>
+                  <stop offset="100%" stop-color="#7178ff"></stop>
+                </linearGradient>
+              </defs>
+              <path d="M14 10h8l8 8 6-8h8L33 24l11 14h-8l-6-8-8 8h-8l11-14z" fill="url(#brand-gradient)"></path>
             </svg>
           </span>
           <span class="brand-text">Legal Logic</span>
         </a>
 
-        <nav class="header-nav" aria-label="Основна навігація">
+        <button
+          class="mobile-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-nav-toggle
+        >
+          <span class="sr-only">Відкрити навігацію</span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Основна навігація" data-nav>
+          <a href="#for-whom">Для кого</a>
           <a href="#how-it-works">Як це працює</a>
           <a href="#review">Contract System Review</a>
           <a href="#packages">Пакети</a>
           <a href="#faq">FAQ</a>
+          <a href="#contact">Контакт</a>
+          <a class="nav-cta" href="#packages" data-track="header_primary_cta">Обрати формат</a>
         </nav>
-
-        <a class="button button-dark button-sm" href="#form" data-track="cta_header_primary" data-prefill-interest="Регулярна підтримка">Залишити заявку</a>
       </div>
     </header>
 
     <main id="main">
-      <section class="hero section">
-        <div class="container hero-layout">
-          <div class="hero-copy">
-            <p class="eyebrow">Legal operations for teams that move fast</p>
-            <h1>Юридична підтримка для digital-бізнесу, який не хоче втрачати темп через договори</h1>
-            <p class="hero-text">Ми допомагаємо командам тримати в порядку договори, redlines, NDA, шаблони та короткі юридичні питання. Не як “юрист на всі випадки”, а як зовнішня legal-система для регулярної роботи.</p>
+      <section class="hero section" id="top">
+        <div class="container hero-grid">
+          <div class="hero-copy fade-in">
+            <div class="eyebrow">Зовнішня юридична підтримка для ІТ-команд</div>
+            <h1>Договірна робота без хаосу.</h1>
+            <p class="hero-lead">
+              Регулярне рев’ю договорів, NDA, redlines, шаблони й короткі письмові відповіді — у чіткому форматі, без погодинної невизначеності.
+            </p>
             <div class="hero-actions">
-              <a class="button button-dark" href="#form" data-track="cta_hero_primary" data-prefill-interest="Регулярна підтримка">Обговорити підтримку</a>
-              <a class="button button-light" href="#review" data-track="cta_hero_secondary" data-prefill-interest="Contract System Review">Почати з review</a>
+              <a class="button button-primary" href="#packages" data-track="hero_primary_cta">Переглянути пакети</a>
+              <a class="button button-secondary" href="#review" data-track="hero_secondary_cta">Contract System Review</a>
             </div>
-            <ul class="hero-points" aria-label="Ключові переваги">
-              <li>Передбачуваний процес замість хаотичних звернень</li>
-              <li>Фокус на договорах, шаблонах і щоденній юридичній роботі</li>
-              <li>Підтримка, яку легко вбудувати у ваш workflow</li>
-            </ul>
+            <div class="micro-proof" aria-label="Ключові переваги формату">
+              <span>Фокус на договорах</span>
+              <span>Швидкий старт</span>
+              <span>Чіткий scope</span>
+              <span>Без law firm look</span>
+            </div>
           </div>
 
-          <div class="hero-visual" aria-hidden="true">
-            <div class="preview-window">
-              <div class="preview-topbar">
-                <span></span><span></span><span></span>
+          <div class="hero-scene fade-in" aria-hidden="true">
+            <div class="scene-frame">
+              <svg class="scene-traces" viewBox="0 0 720 540" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="trace" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="rgba(124,145,255,0.04)" />
+                    <stop offset="50%" stop-color="rgba(124,145,255,0.35)" />
+                    <stop offset="100%" stop-color="rgba(124,145,255,0.06)" />
+                  </linearGradient>
+                </defs>
+                <path d="M85 130h120c26 0 34 18 34 34v12c0 18 10 28 28 28h104" class="trace-path"></path>
+                <path d="M394 205h112c20 0 30 10 30 30v52c0 15 8 22 22 22h74" class="trace-path"></path>
+                <path d="M190 338h105c22 0 30 -12 30 -28v-18c0 -18 10 -26 26 -26h84" class="trace-path"></path>
+                <circle cx="238" cy="176" r="5" class="trace-node"></circle>
+                <circle cx="373" cy="205" r="5" class="trace-node"></circle>
+                <circle cx="325" cy="294" r="4" class="trace-node"></circle>
+                <circle cx="560" cy="340" r="5" class="trace-node"></circle>
+              </svg>
+
+              <div class="scene-panel scene-primary drift drift-slow">
+                <div class="scene-header">
+                  <span class="scene-label">Review flow</span>
+                  <span class="scene-status">Active</span>
+                </div>
+                <div class="scene-doc">
+                  <div class="doc-row doc-title"></div>
+                  <div class="doc-row"></div>
+                  <div class="doc-row"></div>
+                  <div class="doc-row short"></div>
+                </div>
+                <div class="scene-columns">
+                  <div class="scene-block">
+                    <div class="block-tag">Input</div>
+                    <ul>
+                      <li>NDA</li>
+                      <li>MSA addendum</li>
+                      <li>Vendor terms</li>
+                    </ul>
+                  </div>
+                  <div class="scene-block highlight-block">
+                    <div class="block-tag">Actions</div>
+                    <ul>
+                      <li>redlines ready</li>
+                      <li>risk notes</li>
+                      <li>reply draft</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="scene-footer">
+                  <span class="pill active">Review</span>
+                  <span class="pill">Reply</span>
+                  <span class="pill">Template</span>
+                </div>
               </div>
-              <div class="preview-grid">
-                <div class="preview-main panel-like">
-                  <div class="preview-label">Contract workflow</div>
-                  <div class="workflow-lanes">
-                    <div class="workflow-column">
-                      <div class="workflow-title">Inbox</div>
-                      <div class="workflow-card small-card">
-                        <strong>NDA update</strong>
-                        <span>client request</span>
-                      </div>
-                      <div class="workflow-card small-card muted-card">
-                        <strong>MSA redlines</strong>
-                        <span>needs comments</span>
-                      </div>
-                    </div>
-                    <div class="workflow-column">
-                      <div class="workflow-title">Review</div>
-                      <div class="workflow-card accent-card">
-                        <strong>Risk pass</strong>
-                        <span>priority clauses</span>
-                      </div>
-                    </div>
-                    <div class="workflow-column">
-                      <div class="workflow-title">Ready</div>
-                      <div class="workflow-card small-card done-card">
-                        <strong>Approved</strong>
-                        <span>send to business</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="preview-side">
-                  <div class="metric-card panel-like">
-                    <span class="metric-label">Turnaround</span>
-                    <strong>≤ 1 day</strong>
-                    <span>for ongoing requests</span>
-                  </div>
-                  <div class="metric-card panel-like">
-                    <span class="metric-label">Scope</span>
-                    <strong>Contracts</strong>
-                    <span>Templates · redlines · questions</span>
-                  </div>
-                  <div class="metric-card panel-like">
-                    <span class="metric-label">Format</span>
-                    <strong>External legal layer</strong>
-                    <span>without in-house overhead</span>
-                  </div>
-                </div>
+
+              <div class="scene-panel scene-card scene-card-a drift">
+                <div class="tiny-label">Request</div>
+                <strong>Контрагент надіслав redlines</strong>
+                <span>Потрібна позиція по 4 пунктах</span>
+              </div>
+
+              <div class="scene-panel scene-card scene-card-b drift drift-reverse">
+                <div class="tiny-label">Output</div>
+                <strong>Короткий висновок</strong>
+                <span>Ризики, межі, варіант відповіді</span>
+              </div>
+
+              <div class="scene-panel scene-card scene-card-c drift drift-slow">
+                <div class="tiny-label">Status</div>
+                <strong>Шаблон оновлено</strong>
+                <span>NDA v3 синхронізовано з практикою</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section section-soft" id="for-whom">
-        <div class="container stack-lg">
-          <div class="section-intro">
-            <p class="section-kicker">For whom</p>
-            <h2>Ми працюємо з командами, у яких договори вже стали частиною операційки</h2>
-            <p>Найкраще цей формат працює там, де юрзадачі виникають постійно: нові клієнтські угоди, redlines від контрагентів, повторювані шаблони, NDA, правки від sales чи operations. Зазвичай до нас звертаються founder, CEO, COO, Head of Operations або business development lead.</p>
+      <section class="section" id="for-whom">
+        <div class="container">
+          <div class="section-head narrow fade-in">
+            <div class="eyebrow">Для кого це</div>
+            <h2>Для команд, яким потрібна системна договірна підтримка.</h2>
+            <p>
+              Формат підходить засновникам, COO, head of operations, finance lead і менеджерам, які не хочуть щоразу збирати юридичний контекст з нуля.
+            </p>
           </div>
 
-          <div class="feature-row">
-            <article class="feature-tile">
-              <h3>SaaS та продуктові команди</h3>
-              <p>Коли треба тримати в порядку клієнтські шаблони, IP-документи та умови співпраці.</p>
+          <div class="card-grid four-up fade-in">
+            <article class="panel card-quiet">
+              <h3>SaaS-компанії</h3>
+              <p>Регулярні договори з клієнтами, підрядниками та партнерами без накопичення ризиків.</p>
             </article>
-            <article class="feature-tile">
+            <article class="panel card-quiet">
               <h3>Сервісні ІТ-команди</h3>
-              <p>Коли юридична частина не має гальмувати delivery, sales і запуск нових угод.</p>
+              <p>Коли потрібні швидкі правки, NDA, redlines та чіткі відповіді по поточних угодах.</p>
             </article>
-            <article class="feature-tile">
+            <article class="panel card-quiet">
               <h3>Digital agencies</h3>
-              <p>Коли в процесі постійно є NDA, service agreements, правки від клієнтів і швидкі уточнення.</p>
+              <p>Для команд, які часто узгоджують scope, payment terms, IP і delivery terms.</p>
             </article>
-            <article class="feature-tile">
-              <h3>Команди на стадії росту</h3>
-              <p>Коли in-house юрист ще не на часі, але без системної підтримки вже незручно.</p>
+            <article class="panel card-quiet">
+              <h3>Продуктові команди, що зростають</h3>
+              <p>Коли обсяг договорів уже виріс, а in-house юрист поки не потрібен на повну ставку.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section" id="problem">
-        <div class="container narrative-grid">
-          <div class="section-intro section-intro-narrow">
-            <p class="section-kicker">What changes</p>
-            <h2>Замість юридичного шуму — контрольований процес, який підтримує темп команди</h2>
-            <p>Проблема зазвичай не в тому, що немає юриста. Проблема в тому, що договірна робота розмазана між sales, operations, delivery і засновниками. Через це все стає повільнішим, менш передбачуваним і більш ризиковим.</p>
+      <section class="section section-density" id="problem">
+        <div class="container">
+          <div class="section-head narrow fade-in">
+            <div class="eyebrow">Проблема</div>
+            <h2>Симптоми зазвичай однакові.</h2>
+            <p>Не криза. Просто договірна робота починає забирати більше уваги, ніж повинна.</p>
           </div>
-          <div class="narrative-panel panel-card">
-            <div class="mini-grid">
-              <article>
-                <h3>Менше повторного входження в контекст</h3>
-                <p>Не потрібно щоразу починати з нуля з новим підрядником.</p>
-              </article>
-              <article>
-                <h3>Швидше рішення по redlines</h3>
-                <p>Команда отримує не хаос правок, а зрозумілий юридичний сигнал.</p>
-              </article>
-              <article>
-                <h3>Більше порядку в шаблонах</h3>
-                <p>Документи не накопичуються без системи, а працюють як база.</p>
-              </article>
-              <article>
-                <h3>Ризики розставлені по пріоритету</h3>
-                <p>Не все однаково важливо — і це має бути видно одразу.</p>
-              </article>
-            </div>
+
+          <div class="card-grid diagnostics fade-in">
+            <article class="panel diagnostic-card">
+              <span class="diagnostic-dot"></span>
+              <h3>Погодження тягнуться</h3>
+              <p>Контракти рухаються повільно, бо кожне питання щоразу треба пояснювати заново.</p>
+            </article>
+            <article class="panel diagnostic-card">
+              <span class="diagnostic-dot"></span>
+              <h3>Шаблони розходяться</h3>
+              <p>Різні версії документів існують паралельно і команда не знає, що зараз актуально.</p>
+            </article>
+            <article class="panel diagnostic-card">
+              <span class="diagnostic-dot"></span>
+              <h3>Redlines без рамки</h3>
+              <p>Немає сталої логіки, що приймаємо, а що одразу відхиляємо.</p>
+            </article>
+            <article class="panel diagnostic-card">
+              <span class="diagnostic-dot"></span>
+              <h3>Внутрішні відповіді повільні</h3>
+              <p>Фінанси, операції та sales чекають юридичний коментар довше, ніж варто.</p>
+            </article>
+            <article class="panel diagnostic-card">
+              <span class="diagnostic-dot"></span>
+              <h3>Юридична логіка не зафіксована</h3>
+              <p>Позиції живуть у листах і чатах, а не в робочій системі документів.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section class="section section-soft" id="how-it-works">
-        <div class="container stack-lg">
-          <div class="section-intro">
-            <p class="section-kicker">How it works</p>
-            <h2>Формат схожий не на разові послуги, а на стабільний legal workflow</h2>
-            <p>Ви заходите або одразу в регулярну підтримку, або спочатку через окремий review. Далі передаєте документи та запити в межах погодженого формату, а ми беремо на себе регулярну договірну роботу, яку незручно розпорошувати всередині команди.</p>
+      <section class="section" id="how-it-works">
+        <div class="container">
+          <div class="section-head narrow fade-in">
+            <div class="eyebrow">Як це працює</div>
+            <h2>Три кроки. Одна робоча логіка.</h2>
+            <p>Формат побудований так, щоб договори рухались швидше, а не ставали окремим проєктом.</p>
           </div>
 
-          <div class="steps-shell">
-            <article class="step-card">
+          <div class="flow-shell fade-in">
+            <div class="flow-line" aria-hidden="true"></div>
+            <article class="panel flow-step">
               <span class="step-index">01</span>
-              <h3>Обираєте формат входу</h3>
-              <p>Або пакет підтримки, або Contract System Review, якщо спочатку потрібна ясна картина по документах.</p>
+              <h3>Надсилаєте задачу</h3>
+              <p>Договір, пункт, redlines або коротке питання з потрібним контекстом.</p>
             </article>
-            <article class="step-card">
+            <article class="panel flow-step">
               <span class="step-index">02</span>
-              <h3>Передаєте задачі в єдиний потік</h3>
-              <p>Договори, redlines, шаблони документів і короткі письмові запити йдуть в один зрозумілий процес.</p>
+              <h3>Отримуєте позицію</h3>
+              <p>Коментар, правки, межі ризику або готовий варіант відповіді контрагенту.</p>
             </article>
-            <article class="step-card">
+            <article class="panel flow-step">
               <span class="step-index">03</span>
-              <h3>Команда працює без юридичного стопу</h3>
-              <p>Ви отримуєте передбачувану підтримку, а не набір випадкових юридичних реакцій.</p>
+              <h3>Фіксуємо рішення</h3>
+              <p>Шаблони, робочі підходи й узгоджені позиції не губляться між тасками.</p>
             </article>
           </div>
 
-          <ul class="inline-signals" aria-label="Основні принципи формату">
-            <li>Зрозумілий scope</li>
-            <li>Передбачувана вартість</li>
-            <li>Швидка робоча комунікація</li>
-            <li>Фокус на актуальних бізнес-задачах</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="section" id="focus">
-        <div class="container split-focus">
-          <div class="section-intro section-intro-narrow">
-            <p class="section-kicker">Focused by design</p>
-            <h2>Ми не намагаємось бути сервісом “на все”, і саме тому формат працює краще</h2>
-            <p>Legal Logic закриває ту частину юридичної роботи, яка реально повторюється в ІТ-компаніях: договори, правки від контрагентів, шаблони документів, короткі бізнес-запити, пояснення ризиків і підтримка в поточному процесі.</p>
-          </div>
-          <div class="focus-grid">
-            <article class="focus-card"><h3>Релевантний фокус</h3><p>Тільки той пласт задач, який реально впливає на угоди, delivery та порядок у документах.</p></article>
-            <article class="focus-card"><h3>Чіткі межі формату</h3><p>Відразу зрозуміло, що входить у пакети, а що краще оцінювати окремо.</p></article>
-            <article class="focus-card"><h3>Без погодинного хаосу</h3><p>Пакети продають не “час юриста”, а стабільний рівень підтримки.</p></article>
-            <article class="focus-card"><h3>Простий старт</h3><p>Можна почати з review, а потім перейти в регулярну модель без зайвого тертя.</p></article>
+          <div class="signal-row fade-in" aria-label="Принципи формату">
+            <span class="signal-chip">Короткий письмовий формат</span>
+            <span class="signal-chip">Передбачуваний scope</span>
+            <span class="signal-chip">Швидкий response loop</span>
+            <span class="signal-chip">Без погодинного хаосу</span>
           </div>
         </div>
       </section>
 
-      <section class="section section-soft" id="testimonials">
-        <div class="container stack-md">
-          <div class="section-intro section-intro-compact">
-            <p class="section-kicker">Social proof</p>
-            <h2>Подача для людей, яким потрібен робочий процес, а не юридичний пафос</h2>
+      <section class="section" id="trust">
+        <div class="container trust-layout fade-in">
+          <article class="panel trust-main">
+            <div class="eyebrow">Чому цей формат працює</div>
+            <h2>Не “юридичні послуги загалом”, а нормальна операційна система для договорів.</h2>
+            <p>
+              Підтримка побудована навколо типових запитів ІТ-команди: рев’ю, redlines, NDA, шаблони, короткі письмові відповіді та оновлення документів. Це дозволяє працювати швидко, без окремого запуску кожної юридичної задачі як мініпроєкту.
+            </p>
+          </article>
+
+          <div class="trust-side">
+            <article class="panel trust-mini">
+              <h3>Робочі межі</h3>
+              <p>Команда розуміє, що входить у підтримку, а що погоджується окремо.</p>
+            </article>
+            <article class="panel trust-mini">
+              <h3>Без погодинного шуму</h3>
+              <p>Пакети описують формат і місткість, а не продають абстрактні години.</p>
+            </article>
+            <article class="panel trust-mini">
+              <h3>Простий старт</h3>
+              <p>Можна одразу зайти через пакет або спочатку пройти Contract System Review.</p>
+            </article>
+            <article class="panel trust-mini">
+              <h3>Позиції фіксуються</h3>
+              <p>Важливі рішення переходять у шаблони й практику, а не лишаються в тредах.</p>
+            </article>
           </div>
-          <div class="quotes-row">
-            <figure class="quote-card">
-              <blockquote>“Нам потрібен був не великий юраутсорс, а спокійний і зрозумілий формат для щоденної роботи з договорами.”</blockquote>
-              <figcaption>CEO · SaaS-компанія</figcaption>
-            </figure>
-            <figure class="quote-card">
-              <blockquote>“Цінність у тому, що договірні питання перестають випадати хаотично. З’являється робочий процес.”</blockquote>
-              <figcaption>COO · сервісна ІТ-компанія</figcaption>
-            </figure>
-            <figure class="quote-card">
-              <blockquote>“Формат виглядає близьким до реального digital-бізнесу. Без зайвого пафосу, але дуже по суті.”</blockquote>
-              <figcaption>Head of Operations · digital agency</figcaption>
-            </figure>
+        </div>
+      </section>
+
+      <section class="section section-tight" id="testimonials">
+        <div class="container">
+          <div class="testimonial-row fade-in">
+            <article class="panel testimonial-card">
+              <p>“Вперше з’явився формат, де договірна робота не зависає між sales, finance і legal.”</p>
+              <div class="testimonial-meta">COO · SaaS-компанія</div>
+            </article>
+            <article class="panel testimonial-card">
+              <p>“Найцінніше — короткі письмові позиції, які можна одразу переслати в операційну роботу.”</p>
+              <div class="testimonial-meta">Operations lead · сервісна ІТ-команда</div>
+            </article>
+            <article class="panel testimonial-card">
+              <p>“Review став передбачуваним: ми знаємо, коли йдемо в пакет, а коли в окремий scope.”</p>
+              <div class="testimonial-meta">Founder · digital agency</div>
+            </article>
           </div>
         </div>
       </section>
 
       <section class="section" id="review">
-        <div class="container review-shell">
-          <div class="review-copy">
-            <div class="section-intro section-intro-left">
-              <p class="section-kicker">Contract System Review</p>
-              <h2>Окремий стартовий формат, якщо спочатку потрібно зрозуміти слабкі місця у ваших договорах</h2>
-              <p>Це хороший вхід для команд, які хочуть спочатку побачити реальну картину: де у шаблонах прогалини, які ризики зараз найважливіші і що варто виправляти в першу чергу.</p>
+        <div class="container">
+          <div class="panel review-shell fade-in">
+            <div class="review-copy">
+              <div class="eyebrow">Entry product</div>
+              <h2>Contract System Review</h2>
+              <p>
+                Стартовий модуль для команди, якій потрібно швидко зрозуміти стан договірної системи, слабкі місця та пріоритети оновлення.
+              </p>
+
+              <div class="split-copy">
+                <div>
+                  <h3>Що входить</h3>
+                  <ul class="clean-list">
+                    <li>Огляд 3–5 типових договорів або шаблонів</li>
+                    <li>Карта основних ризиків і нестиковок</li>
+                    <li>Пріоритети на перше оновлення</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3>Що отримаєте</h3>
+                  <ul class="clean-list">
+                    <li>Структурований письмовий висновок</li>
+                    <li>Список проблемних зон без “води”</li>
+                    <li>Зрозумілий маршрут до Professional або Extended</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div class="review-points">
-              <div class="info-card">
-                <h3>Що входить</h3>
-                <p>Аналіз до 5 типових договорів або шаблонів.</p>
+            <aside class="panel product-card">
+              <div class="product-card-head">
+                <span class="product-tag">Contract System Review</span>
+                <span class="price">від $350</span>
               </div>
-              <div class="info-card">
-                <h3>Що отримаєте</h3>
-                <ul class="bullet-list">
-                  <li>Executive Summary</li>
-                  <li>Таблицю ризиків</li>
-                  <li>План дій на 30–90 днів</li>
-                </ul>
+              <p class="product-fit">Підходить як перший крок, якщо потрібна діагностика перед регулярною підтримкою.</p>
+              <dl class="product-facts">
+                <div>
+                  <dt>Строк</dt>
+                  <dd>3–5 робочих днів</dd>
+                </div>
+                <div>
+                  <dt>Формат</dt>
+                  <dd>Письмовий висновок + next steps</dd>
+                </div>
+                <div>
+                  <dt>CTA</dt>
+                  <dd>Короткий запит на старт</dd>
+                </div>
+              </dl>
+              <a class="button button-primary button-full" href="#contact" data-track="review_cta">Запустити review</a>
+              <div class="note-box">
+                Якщо після review команда переходить на Professional або Extended, вартість review може бути зарахована в оплату першого місяця.
               </div>
-            </div>
+            </aside>
           </div>
-
-          <aside class="review-card">
-            <div class="review-badge">Standalone entry product</div>
-            <div class="review-price">$390</div>
-            <p class="review-meta">5 робочих днів</p>
-            <p class="review-fit">Підійде, якщо хочете спочатку отримати чітку картину по документах, а вже потім переходити до регулярної роботи.</p>
-            <a class="button button-dark button-full" href="#form" data-track="cta_review_primary" data-prefill-interest="Contract System Review">Замовити review</a>
-            <p class="review-note">100% вартості review зараховується в оплату першого місяця пакетів Professional або Extended, якщо ви стартуєте протягом 14 днів після завершення review і погоджуєтесь мінімум на 3 місяці роботи.</p>
-          </aside>
         </div>
       </section>
 
-      <section class="section section-soft" id="packages">
-        <div class="container stack-lg">
-          <div class="section-intro">
-            <p class="section-kicker">Packages</p>
-            <h2>Рівні підтримки для різного обсягу юридичної роботи</h2>
-            <p>Пакети побудовані навколо навантаження команди, а не навколо продажу годин. Ви обираєте той рівень включення, який найкраще відповідає вашому поточному процесу.</p>
+      <section class="section" id="packages">
+        <div class="container">
+          <div class="section-head narrow fade-in">
+            <div class="eyebrow">Пакети</div>
+            <h2>Формат підтримки, а не продаж годин.</h2>
+            <p>Пакети показують місткість і рівень включення в договірну роботу команди.</p>
           </div>
 
-          <div class="pricing-grid">
-            <article class="pricing-card">
-              <div class="pricing-head">
-                <p class="plan-name">Basic</p>
-                <div class="plan-price">$349 <span>/ місяць</span></div>
+          <div class="pricing-grid fade-in">
+            <article class="panel pricing-card" data-plan="basic">
+              <div class="pricing-top">
+                <h3>Basic</h3>
+                <div class="pricing-price">від $450<span>/міс</span></div>
               </div>
-              <p class="plan-summary">Для команд із помірним потоком договорів і точковими юридичними питаннями.</p>
-              <p class="plan-fit">Підійде, якщо регулярно потрібні NDA, базові договори, короткі юридичні відповіді та періодичне рев’ю документів.</p>
+              <p class="pricing-descriptor">Базовий робочий контур.</p>
+              <p class="pricing-fit">Для команд із помірним потоком договорів і потребою в стабільному legal response.</p>
               <ul class="feature-list">
-                <li>До 3 коротких письмових юридичних запитів на місяць</li>
-                <li>1 стандартне рев’ю договору або 1 шаблонний документ</li>
-                <li>Комунікація в email або месенджері</li>
-                <li>Строк відповіді — до 2 робочих днів</li>
+                <li>Рев’ю стандартних договорів</li>
+                <li>NDA, короткі письмові запити</li>
+                <li>Redlines у межах типової договірної логіки</li>
+                <li>Оновлення шаблонів точково</li>
               </ul>
-              <p class="plan-capacity">Зазвичай це підходить для команд із потребою приблизно 3–5 годин стандартної юридичної роботи на місяць.</p>
-              <a class="button button-light button-full" href="#form" data-track="cta_package_basic" data-prefill-interest="Регулярна підтримка" data-prefill-package="Basic">Обрати Basic</a>
+              <div class="capacity-line">Місткість: до 8–10 типових задач на місяць</div>
+              <a class="button button-secondary button-full" href="#contact" data-track="package_basic_cta">Обрати Basic</a>
             </article>
 
-            <article class="pricing-card pricing-card-featured">
-              <div class="pricing-ribbon">Most used</div>
-              <div class="pricing-head">
-                <p class="plan-name">Professional</p>
-                <div class="plan-price">$649 <span>/ місяць</span></div>
+            <article class="panel pricing-card pricing-card-featured" data-plan="professional">
+              <div class="pricing-badge">Recommended</div>
+              <div class="pricing-top">
+                <h3>Professional</h3>
+                <div class="pricing-price">від $900<span>/міс</span></div>
               </div>
-              <p class="plan-summary">Основний пакет для команд, у яких договори і redlines з’являються вже регулярно.</p>
-              <p class="plan-fit">Підійде, якщо потрібна стабільна підтримка для договірної роботи, погодження ризиків і щоденних запитів від бізнес-команди.</p>
+              <p class="pricing-descriptor">Основний робочий формат.</p>
+              <p class="pricing-fit">Для команд, у яких договірна робота вже впливає на sales, finance, operations і delivery.</p>
               <ul class="feature-list">
-                <li>До 6 коротких письмових юридичних запитів на місяць</li>
-                <li>До 3 стандартних рев’ю договорів або шаблонних документів</li>
-                <li>1 дзвінок до 45 хвилин на місяць</li>
-                <li>1 раунд правок від контрагента щодо одного включеного документа</li>
-                <li>Комунікація в email або месенджері</li>
-                <li>Строк відповіді — до 1 робочого дня</li>
+                <li>Усе з Basic</li>
+                <li>Більше рев’ю та активніша робота з redlines</li>
+                <li>Регулярне оновлення шаблонів</li>
+                <li>Короткі правові позиції для внутрішньої команди</li>
               </ul>
-              <p class="plan-capacity">Зазвичай цього достатньо для команд із потребою приблизно 6–10 годин стандартної юридичної роботи на місяць.</p>
-              <a class="button button-dark button-full" href="#form" data-track="cta_package_professional" data-prefill-interest="Регулярна підтримка" data-prefill-package="Professional">Обрати Professional</a>
+              <div class="capacity-line">Місткість: до 18–22 типових задач на місяць</div>
+              <a class="button button-primary button-full" href="#contact" data-track="package_professional_cta">Обрати Professional</a>
             </article>
 
-            <article class="pricing-card">
-              <div class="pricing-head">
-                <p class="plan-name">Extended</p>
-                <div class="plan-price">$1,049 <span>/ місяць</span></div>
+            <article class="panel pricing-card" data-plan="extended">
+              <div class="pricing-top">
+                <h3>Extended</h3>
+                <div class="pricing-price">від $1450<span>/міс</span></div>
               </div>
-              <p class="plan-summary">Для команд, яким потрібна швидша реакція і щільніше включення в поточну роботу з контрагентами.</p>
-              <p class="plan-fit">Підійде, якщо нові договори заходять постійно, часто приходять redlines, потрібні дзвінки й більш швидке юридичне включення.</p>
+              <p class="pricing-descriptor">Глибший рівень включення.</p>
+              <p class="pricing-fit">Для команд із більшою кількістю договорів, складнішими переговорами та потребою в системному оновленні документів.</p>
               <ul class="feature-list">
-                <li>До 10 коротких письмових юридичних запитів на місяць</li>
-                <li>До 6 стандартних рев’ю договорів або шаблонних документів</li>
-                <li>2 дзвінки до 45 хвилин на місяць</li>
-                <li>До 2 раундів правок від контрагента щодо включених документів</li>
-                <li>Пріоритетне опрацювання</li>
+                <li>Усе з Professional</li>
+                <li>Більший обсяг правок і договорів</li>
+                <li>Швидший response loop</li>
+                <li>Пріоритет на розвиток пакета шаблонів</li>
               </ul>
-              <p class="plan-capacity">Зазвичай цього достатньо для команд із потребою приблизно 10–16 годин стандартної юридичної роботи на місяць.</p>
-              <a class="button button-light button-full" href="#form" data-track="cta_package_extended" data-prefill-interest="Регулярна підтримка" data-prefill-package="Extended">Обрати Extended</a>
+              <div class="capacity-line">Місткість: до 30+ типових задач на місяць</div>
+              <a class="button button-secondary button-full" href="#contact" data-track="package_extended_cta">Обрати Extended</a>
             </article>
           </div>
 
-          <p class="section-caption">Пакети показують обсяг підтримки, а не кількість проданих годин. Годинний орієнтир наведено тільки для розуміння навантаження.</p>
+          <p class="section-note fade-in">Пакети показують робочий обсяг підтримки. Для нетипових або більших задач scope погоджується окремо.</p>
         </div>
       </section>
 
       <section class="section" id="scope">
-        <div class="container scope-shell">
-          <div class="section-intro section-intro-left section-intro-narrow">
-            <p class="section-kicker">Scope</p>
-            <h2>Що саме мається на увазі в пакетах</h2>
-            <p>Щоб формат залишався передбачуваним, базові одиниці роботи краще розуміти однаково ще на старті.</p>
+        <div class="container">
+          <div class="section-head narrow fade-in">
+            <div class="eyebrow">Пояснення scope</div>
+            <h2>Що саме мається на увазі під типовими задачами.</h2>
+            <p>Короткі визначення зменшують зайві очікування і спрощують роботу для всієї команди.</p>
           </div>
-          <div class="scope-grid">
-            <article class="scope-card">
+
+          <div class="card-grid three-up fade-in">
+            <article class="panel definition-card">
               <h3>Короткий письмовий юридичний запит</h3>
-              <p>Одне конкретне юридичне питання в межах одного бізнес-контексту, без окремого memo і без глибокого дослідження.</p>
+              <p>Питання, на яке можна відповісти стисло й по суті без окремого дослідження або великого мемо.</p>
+              <span class="example-line">Наприклад: чи можна прийняти конкретний пункт у NDA.</span>
             </article>
-            <article class="scope-card">
+            <article class="panel definition-card">
               <h3>Стандартне рев’ю договору</h3>
-              <p>Аналіз одного договору стандартної складності, зазвичай до 10–12 сторінок, із коментарями, правками або коротким поясненням ризиків.</p>
+              <p>Типовий договір або правки контрагента без потреби будувати окрему стратегію переговорів.</p>
+              <span class="example-line">Наприклад: MSA, SOW, NDA, vendor agreement.</span>
             </article>
-            <article class="scope-card">
+            <article class="panel definition-card">
               <h3>Шаблонний документ</h3>
-              <p>Типовий документ на базі стандартної бізнес-моделі або адаптації наявного шаблону: NDA, contractor agreement, addendum, IP assignment, short-form services agreement.</p>
+              <p>Документ, який можна взяти за основу для повторного використання всередині команди.</p>
+              <span class="example-line">Наприклад: базовий NDA або оновлений service agreement.</span>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section section-soft" id="addons">
-        <div class="container split-list-shell">
-          <div class="section-intro section-intro-left section-intro-narrow">
-            <p class="section-kicker">Add-ons</p>
-            <h2>Додаткові послуги без зміни пакета</h2>
-            <p>Якщо задач тимчасово більше, ніж входить у базовий формат, окремі позиції можна докупити без переходу на інший рівень підтримки.</p>
-          </div>
-          <div class="addon-table">
-            <div class="addon-row"><span>Додатковий короткий письмовий запит</span><strong>$55</strong></div>
-            <div class="addon-row"><span>Додаткове стандартне рев’ю договору</span><strong>$195</strong></div>
-            <div class="addon-row"><span>Додатковий шаблонний документ</span><strong>$175</strong></div>
-            <div class="addon-row"><span>Додатковий дзвінок до 45 хвилин</span><strong>$95</strong></div>
-            <div class="addon-row"><span>Додатковий раунд правок від контрагента</span><strong>$135</strong></div>
-            <div class="addon-row"><span>Участь у дзвінку або переговорах</span><strong>$120 / до 60 хвилин</strong></div>
-            <div class="addon-row"><span>Термінове опрацювання</span><strong>+50%</strong></div>
-            <div class="addon-row"><span>Deep redline або складне погодження нетипового договору</span><strong>від $250</strong></div>
-            <div class="addon-row"><span>Нестандартний legal memo</span><strong>від $250</strong></div>
-            <div class="addon-row"><span>Політики, внутрішні правила або documents pack</span><strong>від $250–400</strong></div>
+      <section class="section" id="extras">
+        <div class="container">
+          <div class="panel services-shell fade-in">
+            <div class="section-head left-aligned compact">
+              <div class="eyebrow">Додаткові послуги</div>
+              <h2>Окремі модулі, якщо потрібно більше.</h2>
+              <p>Поза пакетом можна погоджувати додаткові задачі з фіксованим scope і зрозумілим результатом.</p>
+            </div>
+
+            <div class="services-groups">
+              <div class="service-group">
+                <div class="group-title">Стандартні модулі</div>
+                <div class="service-row">
+                  <span>Оновлення шаблонного NDA</span>
+                  <strong>від $120</strong>
+                </div>
+                <div class="service-row">
+                  <span>Шаблон додаткової угоди</span>
+                  <strong>від $150</strong>
+                </div>
+                <div class="service-row">
+                  <span>Письмова позиція по спірному пункту</span>
+                  <strong>від $90</strong>
+                </div>
+              </div>
+
+              <div class="service-group">
+                <div class="group-title">Складніші задачі</div>
+                <div class="service-row">
+                  <span>Переробка пакета шаблонів</span>
+                  <strong>від $450</strong>
+                </div>
+                <div class="service-row">
+                  <span>Нетиповий договір або окрема переговорна логіка</span>
+                  <strong>від $250</strong>
+                </div>
+                <div class="service-row">
+                  <span>Окремий research / memo</span>
+                  <strong>від $220</strong>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="section" id="not-included">
-        <div class="container exclusion-shell">
-          <div class="section-intro section-intro-compact">
-            <p class="section-kicker">Boundaries</p>
-            <h2>Що не входить у пакети</h2>
-            <p>Пакети покривають регулярну договірну й операційну юридичну роботу. Великі проєкти або окремі складні напрями в цей формат не входять.</p>
-          </div>
-          <div class="exclusion-card">
-            <ul class="inline-signals inline-signals-wrap">
-              <li>Суди</li>
-              <li>Претензійно-позовна робота</li>
-              <li>Складні корпоративні проєкти</li>
-              <li>Глибоке податкове консультування</li>
-              <li>Комплексний compliance</li>
-              <li>Реєстраційні дії</li>
-              <li>Due diligence</li>
-              <li>M&amp;A</li>
-              <li>Нестандартні міжнародні структури</li>
-              <li>Інші великі проєкти</li>
-            </ul>
-            <p class="section-caption">Такі задачі можна погодити окремо за фіксованою вартістю.</p>
-          </div>
+        <div class="container">
+          <article class="panel boundary-shell fade-in">
+            <div class="section-head left-aligned compact">
+              <div class="eyebrow">Що не входить</div>
+              <h2>Окремий scope, якщо задача виходить за межі поточної системи.</h2>
+              <p>Пакети сфокусовані на регулярній договірній підтримці. Інші напрями можна узгодити окремо.</p>
+            </div>
+
+            <div class="boundary-list">
+              <span>Судові спори та претензійна робота</span>
+              <span>Податкові, корпоративні та трудові проєкти</span>
+              <span>Комплексні due diligence або M&amp;A задачі</span>
+              <span>Нетипові міжнародні структури та великі мемо</span>
+              <span>Побудова повного compliance-фреймворку</span>
+              <span>Складні регуляторні проєкти поза договірним контуром</span>
+            </div>
+
+            <p class="closing-note">Такі задачі не “заборонені” — вони просто погоджуються окремо, зі зрозумілим фіксованим scope.</p>
+          </article>
         </div>
       </section>
 
-      <section class="section section-soft" id="faq">
-        <div class="container faq-shell">
-          <div class="section-intro section-intro-compact">
-            <p class="section-kicker">FAQ</p>
-            <h2>Найчастіші питання</h2>
+      <section class="section faq-section" id="faq">
+        <div class="container faq-narrow">
+          <div class="section-head narrow fade-in">
+            <div class="eyebrow">FAQ</div>
+            <h2>Коротко про формат.</h2>
           </div>
 
-          <div class="faq-list" data-accordion>
-            <article class="faq-item is-open">
+          <div class="faq-list fade-in" data-accordion>
+            <div class="faq-item panel">
               <h3>
-                <button class="faq-trigger" type="button" aria-expanded="true" aria-controls="faq-panel-1" id="faq-trigger-1">
-                  <span>Чи підходить сервіс, якщо в нас немає штатного юриста?</span>
+                <button type="button" class="faq-trigger" aria-expanded="true" aria-controls="faq-1" id="faq-trigger-1">
+                  <span>Чим пакет відрізняється від погодинної роботи?</span>
                   <span class="faq-icon" aria-hidden="true"></span>
                 </button>
               </h3>
-              <div class="faq-panel" id="faq-panel-1" role="region" aria-labelledby="faq-trigger-1">
-                <p>Так. Формат якраз і створений для команд, яким юридична підтримка вже потрібна регулярно, але окремий юрист у штаті поки не є найкращим рішенням.</p>
+              <div class="faq-panel" id="faq-1" role="region" aria-labelledby="faq-trigger-1">
+                <p>Пакет описує формат включення в договірну роботу, пріоритет і місткість. Це дає передбачуваність для команди й прибирає постійні мікроузгодження.</p>
               </div>
-            </article>
-            <article class="faq-item">
+            </div>
+
+            <div class="faq-item panel">
               <h3>
-                <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-panel-2" id="faq-trigger-2">
-                  <span>Як обрати пакет?</span>
+                <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-2" id="faq-trigger-2">
+                  <span>Що робити, якщо задача нетипова?</span>
                   <span class="faq-icon" aria-hidden="true"></span>
                 </button>
               </h3>
-              <div class="faq-panel" id="faq-panel-2" role="region" aria-labelledby="faq-trigger-2" hidden>
-                <p>Орієнтуйтеся на частоту договорів, redlines, шаблонів і коротких юридичних запитів. Якщо є сумнів, це можна швидко визначити на першому контакті.</p>
+              <div class="faq-panel" id="faq-2" role="region" aria-labelledby="faq-trigger-2" hidden>
+                <p>Нетипові задачі не змішуються з поточним потоком. Для них окремо погоджується результат, строк і вартість.</p>
               </div>
-            </article>
-            <article class="faq-item">
+            </div>
+
+            <div class="faq-item panel">
               <h3>
-                <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-panel-3" id="faq-trigger-3">
-                  <span>Що робити, якщо задач більше, ніж входить у пакет?</span>
-                  <span class="faq-icon" aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div class="faq-panel" id="faq-panel-3" role="region" aria-labelledby="faq-trigger-3" hidden>
-                <p>Є два варіанти: перейти на вищий пакет або докупити окремі задачі як add-ons. Це дозволяє не ламати формат через тимчасове зростання навантаження.</p>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-panel-4" id="faq-trigger-4">
+                <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-3" id="faq-trigger-3">
                   <span>Чи можна почати не з пакета, а з review?</span>
                   <span class="faq-icon" aria-hidden="true"></span>
                 </button>
               </h3>
-              <div class="faq-panel" id="faq-panel-4" role="region" aria-labelledby="faq-trigger-4" hidden>
-                <p>Так. Contract System Review — це окремий стартовий формат для команд, які спочатку хочуть побачити основні ризики і пріоритети у своїх документах.</p>
+              <div class="faq-panel" id="faq-3" role="region" aria-labelledby="faq-trigger-3" hidden>
+                <p>Так. Contract System Review підходить як точка входу, коли потрібно спочатку діагностувати договірну систему й зрозуміти обсяг подальшої підтримки.</p>
               </div>
-            </article>
-            <article class="faq-item">
+            </div>
+
+            <div class="faq-item panel">
               <h3>
-                <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-panel-5" id="faq-trigger-5">
-                  <span>Як відбувається комунікація?</span>
+                <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-4" id="faq-trigger-4">
+                  <span>Чи можна адаптувати пакет під команду?</span>
                   <span class="faq-icon" aria-hidden="true"></span>
                 </button>
               </h3>
-              <div class="faq-panel" id="faq-panel-5" role="region" aria-labelledby="faq-trigger-5" hidden>
-                <p>Основна комунікація йде через email або месенджер. У Professional і Extended також передбачені дзвінки.</p>
+              <div class="faq-panel" id="faq-4" role="region" aria-labelledby="faq-trigger-4" hidden>
+                <p>Так, але спершу краще виходити з базової архітектури. Це зберігає ясність і дозволяє коригувати формат уже з фактичного навантаження.</p>
               </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-panel-6" id="faq-trigger-6">
-                  <span>Що не входить у пакети?</span>
-                  <span class="faq-icon" aria-hidden="true"></span>
-                </button>
-              </h3>
-              <div class="faq-panel" id="faq-panel-6" role="region" aria-labelledby="faq-trigger-6" hidden>
-                <p>Не входять суди, претензійно-позовна робота, складні корпоративні проєкти, глибоке податкове консультування, комплексний compliance, реєстраційні дії, due diligence, M&amp;A та інші великі задачі з окремим обсягом робіт.</p>
-              </div>
-            </article>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="section" id="final-cta">
-        <div class="container cta-shell">
-          <div class="section-intro section-intro-compact center-intro">
-            <p class="section-kicker">Choose your entry point</p>
-            <h2>Підключайте регулярну підтримку або заходьте через review</h2>
-            <p>Якщо потрібна постійна робота з договорами — краще починати з пакета. Якщо спершу хочете зрозуміти стан документів і пріоритети — заходьте через Contract System Review.</p>
+        <div class="container">
+          <div class="section-head narrow fade-in">
+            <div class="eyebrow">Старт</div>
+            <h2>Два способи зайти в систему.</h2>
+            <p>Або одразу вибрати регулярну підтримку, або почати з діагностики через Contract System Review.</p>
           </div>
-          <div class="cta-cards">
-            <article class="cta-card">
-              <h3>Для регулярної підтримки</h3>
-              <p>Для команд, у яких договірна робота вже йде постійно і потрібен передбачуваний формат взаємодії.</p>
-              <a class="button button-dark" href="#form" data-track="cta_final_support" data-prefill-interest="Регулярна підтримка">Обговорити пакет</a>
+
+          <div class="card-grid two-up fade-in">
+            <article class="panel action-card">
+              <h3>Потрібна регулярна підтримка</h3>
+              <p>Коли задачі вже приходять щотижня і потрібен стабільний робочий формат.</p>
+              <a class="button button-primary" href="#packages" data-track="final_packages_cta">До пакетів</a>
             </article>
-            <article class="cta-card">
-              <h3>Для review</h3>
-              <p>Для команд, які хочуть спочатку побачити ризики, прогалини та точки впорядкування у своїх шаблонах і договорах.</p>
-              <a class="button button-light" href="#form" data-track="cta_final_review" data-prefill-interest="Contract System Review">Замовити review</a>
+            <article class="panel action-card">
+              <h3>Потрібна діагностика спочатку</h3>
+              <p>Коли спершу треба зрозуміти, що саме варто виправити у шаблонах і договірній логіці.</p>
+              <a class="button button-secondary" href="#review" data-track="final_review_cta">До Contract System Review</a>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section section-soft" id="form">
-        <div class="container form-shell">
+      <section class="section" id="contact">
+        <div class="container form-layout fade-in">
           <div class="form-copy">
-            <div class="section-intro section-intro-left section-intro-narrow">
-              <p class="section-kicker">Start here</p>
-              <h2>Залиште заявку</h2>
-              <p>Напишіть коротко, що у вас зараз у роботі. Цього достатньо, щоб ми зрозуміли контекст і запропонували наступний крок.</p>
+            <div class="eyebrow">Форма запиту</div>
+            <h2>Опишіть задачу коротко.</h2>
+            <p>Напишіть, що саме потрібно: пакет, review або конкретний формат старту. Відповідь має бути короткою, чистою і по суті.</p>
+            <div class="signal-row left-aligned">
+              <span class="signal-chip">Inline success state</span>
+              <span class="signal-chip">Без redirect</span>
+              <span class="signal-chip">Простий старт</span>
             </div>
-            <ul class="hero-points compact-points" aria-label="Пояснення до форми">
-              <li>Можна без довгих деталей — головне коротко описати ситуацію</li>
-              <li>Допоможемо зрозуміти, що краще підійде: пакет чи review</li>
-              <li>Основна комунікація — email або месенджер</li>
-            </ul>
           </div>
 
-          <div class="form-panel">
-            <form id="lead-form" novalidate>
-              <div class="form-grid">
-                <div class="field-group">
+          <div class="panel form-panel" data-form-panel>
+            <form class="contact-form" action="/api/contact" method="post" novalidate data-contact-form>
+              <div class="field-row">
+                <div class="field">
                   <label for="name">Ім’я</label>
-                  <input id="name" name="name" type="text" autocomplete="name" placeholder="Ваше ім’я" required aria-describedby="error-name" aria-errormessage="error-name">
-                  <p class="field-error" id="error-name" aria-live="polite"></p>
+                  <input id="name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Ваше ім’я" />
                 </div>
-                <div class="field-group">
-                  <label for="company">Компанія</label>
-                  <input id="company" name="company" type="text" autocomplete="organization" placeholder="Назва компанії" required aria-describedby="error-company" aria-errormessage="error-company">
-                  <p class="field-error" id="error-company" aria-live="polite"></p>
-                </div>
-                <div class="field-group">
+                <div class="field">
                   <label for="email">Email</label>
-                  <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="name@company.com" required aria-describedby="error-email" aria-errormessage="error-email">
-                  <p class="field-error" id="error-email" aria-live="polite"></p>
+                  <input id="email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="name@company.com" />
                 </div>
-                <div class="field-group">
-                  <label for="messenger">Месенджер / Telegram</label>
-                  <input id="messenger" name="messenger" type="text" autocomplete="off" placeholder="Посилання або нік" aria-describedby="hint-messenger">
-                  <p class="field-hint" id="hint-messenger">Можна без деталей — головне коротко описати ситуацію.</p>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="company">Компанія</label>
+                  <input id="company" name="company" type="text" autocomplete="organization" maxlength="120" placeholder="Назва компанії" />
                 </div>
-                <div class="field-group field-group-full">
-                  <label for="interest">Що вам потрібно зараз?</label>
-                  <select id="interest" name="interest" required aria-describedby="hint-interest error-interest" aria-errormessage="error-interest">
-                    <option value="">Оберіть варіант</option>
-                    <option value="Регулярна підтримка">Регулярна підтримка</option>
-                    <option value="Contract System Review">Contract System Review</option>
-                    <option value="Потрібна допомога з вибором">Потрібна допомога з вибором</option>
-                    <option value="Інше">Інше</option>
+                <div class="field">
+                  <label for="interest">Що цікавить</label>
+                  <select id="interest" name="interest" required>
+                    <option value="" selected disabled>Оберіть варіант</option>
+                    <option value="basic">Basic</option>
+                    <option value="professional">Professional</option>
+                    <option value="extended">Extended</option>
+                    <option value="review">Contract System Review</option>
+                    <option value="other">Інше</option>
                   </select>
-                  <p class="field-hint" id="hint-interest">Достатньо 2–3 речень. Допоможемо визначити, що вам краще підійде.</p>
-                  <p class="field-error" id="error-interest" aria-live="polite"></p>
-                </div>
-                <div class="field-group field-group-full">
-                  <label for="message">Короткий опис задачі</label>
-                  <textarea id="message" name="message" rows="6" placeholder="Коротко опишіть, що у вас зараз за задача або які документи потрібно переглянути" required aria-describedby="hint-message error-message" aria-errormessage="error-message"></textarea>
-                  <p class="field-hint" id="hint-message">Наприклад: новий клієнтський договір, правки від контрагента, оновлення NDA або питання по шаблонах.</p>
-                  <p class="field-error" id="error-message" aria-live="polite"></p>
-                </div>
-                <div class="form-honeypot" aria-hidden="true">
-                  <label for="website">Website</label>
-                  <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
                 </div>
               </div>
 
-              <div class="form-actions">
-                <button class="button button-dark" type="submit" data-track="form_submit">Надіслати заявку</button>
-                <p class="form-caption">Без довгих форм і без зайвих деталей.</p>
+              <div class="field">
+                <label for="message">Коротко про запит</label>
+                <textarea id="message" name="message" rows="5" required maxlength="1800" placeholder="Що саме потрібно, який обсяг договорів або з чим зараз є затримка?"></textarea>
+                <p class="helper-text">2–5 речень достатньо для першого контакту.</p>
               </div>
 
-              <p class="form-status form-status-error" id="form-error" aria-live="polite"></p>
-              <div class="form-status form-status-success" id="form-success" role="status" aria-live="polite" hidden>
-                Дякуємо. Ми отримали вашу заявку й повернемося з наступним кроком.
+              <div class="hp-field" aria-hidden="true">
+                <label for="website">Website</label>
+                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+              <input type="hidden" name="started_at" value="" data-started-at />
+
+              <div class="form-footer">
+                <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+                <button class="button button-primary" type="submit" data-track="form_submit">Надіслати запит</button>
               </div>
             </form>
           </div>
@@ -611,34 +701,17 @@
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-shell">
+      <div class="container footer-inner">
         <div>
-          <a class="brand brand-footer" href="#top" aria-label="Legal Logic — на початок сторінки">
-            <span class="brand-mark" aria-hidden="true">
-              <svg viewBox="0 0 64 64" focusable="false" aria-hidden="true">
-                <path d="M18 32 32 18 46 32 32 46Z" fill="none" stroke="currentColor" stroke-width="4.8" stroke-linejoin="round"></path>
-                <path d="M29 22 20 32l9 10M35 22l9 10-9 10" fill="none" stroke="currentColor" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </span>
-            <span class="brand-text">Legal Logic</span>
-          </a>
-          <p class="footer-copy">Юридична підтримка для digital-команд та ІТ-бізнесу, яким потрібен зрозумілий договірний процес.</p>
+          <div class="footer-brand">Legal Logic</div>
+          <p class="footer-copy">Юридична підтримка для регулярної договірної роботи ІТ-команди.</p>
         </div>
         <div class="footer-links">
-          <div>
-            <p class="footer-heading">Контакти</p>
-            <a href="mailto:hello@legallogic.org">hello@legallogic.org</a>
-            <a href="https://t.me/legallogic" rel="noopener noreferrer">Telegram</a>
-          </div>
-          <div>
-            <p class="footer-heading">Документи</p>
-            <a href="/privacy-policy">Privacy Policy</a>
-            <a href="/terms-of-use">Terms of Use</a>
-          </div>
+          <a href="mailto:hello@example.com">hello@example.com</a>
+          <a href="https://t.me/yourhandle" target="_blank" rel="noreferrer">Telegram</a>
+          <a href="/privacy">Privacy</a>
         </div>
       </div>
     </footer>
-
-    <script defer src="/main.js"></script>
   </body>
 </html>

@@ -1,3 +1,1 @@
-/index.html /
-/privacy-policy.html /privacy-policy 200
-/terms-of-use.html /terms-of-use 200
+/api/* /api/:splat 200
