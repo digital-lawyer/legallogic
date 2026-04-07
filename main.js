@@ -9,6 +9,7 @@
   const formStatus = document.querySelector('[data-form-status]');
   const startedAtInput = document.querySelector('[data-started-at]');
   const trackableElements = document.querySelectorAll('[data-track]');
+  let lastFocusedBeforeMenu = null;
 
   const pushTrackingEvent = (eventName, details = {}) => {
     const payload = {
@@ -30,24 +31,46 @@
     header.classList.toggle('is-scrolled', isScrolled);
   };
 
-  const closeNav = () => {
+  const setMenuButtonState = (expanded) => {
+    if (!navToggle) return;
+    navToggle.setAttribute('aria-expanded', String(expanded));
+    navToggle.setAttribute('aria-label', expanded ? 'Закрити меню' : 'Відкрити меню');
+    const srText = navToggle.querySelector('.sr-only');
+    if (srText) srText.textContent = expanded ? 'Закрити меню' : 'Відкрити меню';
+  };
+
+  const getFocusableNavItems = () => {
+    if (!nav) return [];
+    return Array.from(nav.querySelectorAll('a[href], button:not([disabled])'));
+  };
+
+  const closeNav = ({ restoreFocus = true } = {}) => {
     if (!nav || !navToggle) return;
     nav.classList.remove('is-open');
-    navToggle.setAttribute('aria-expanded', 'false');
+    setMenuButtonState(false);
     header?.classList.remove('is-open');
+    if (restoreFocus && lastFocusedBeforeMenu instanceof HTMLElement) {
+      lastFocusedBeforeMenu.focus();
+    }
+    lastFocusedBeforeMenu = null;
   };
 
   const openNav = () => {
     if (!nav || !navToggle) return;
+    lastFocusedBeforeMenu = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     nav.classList.add('is-open');
-    navToggle.setAttribute('aria-expanded', 'true');
+    setMenuButtonState(true);
     header?.classList.add('is-open');
+    const firstLink = getFocusableNavItems()[0];
+    if (firstLink instanceof HTMLElement) firstLink.focus();
   };
 
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
 
   if (nav && navToggle) {
+    setMenuButtonState(false);
+
     navToggle.addEventListener('click', () => {
       const isOpen = nav.classList.contains('is-open');
       if (isOpen) {
@@ -60,7 +83,7 @@
     nav.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 820) {
-          closeNav();
+          closeNav({ restoreFocus: false });
         }
       });
     });
@@ -70,13 +93,39 @@
       const target = event.target;
       if (!(target instanceof Element)) return;
       if (!header?.contains(target)) {
+        closeNav({ restoreFocus: false });
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!nav.classList.contains('is-open')) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
         closeNav();
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const focusables = getFocusableNavItems();
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const current = document.activeElement;
+
+        if (event.shiftKey && current === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && current === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     });
 
     window.addEventListener('resize', () => {
       if (window.innerWidth > 820) {
-        closeNav();
+        closeNav({ restoreFocus: false });
       }
     });
   }
@@ -147,47 +196,87 @@
     });
   });
 
-  const setFieldError = (fieldElement, hasError) => {
+  const setFieldError = (fieldElement, message = '') => {
     const wrapper = fieldElement.closest('.field');
     if (!wrapper) return;
+    const errorNode = wrapper.querySelector('.field-error');
+    const hasError = Boolean(message);
     wrapper.classList.toggle('is-error', hasError);
+    fieldElement.setAttribute('aria-invalid', hasError ? 'true' : 'false');
+    if (errorNode) errorNode.textContent = message;
+  };
+
+  const validateField = (field) => {
+    const value = field.value.trim();
+
+    if (field.hasAttribute('required') && !value) {
+      return 'Це поле обов’язкове.';
+    }
+
+    if (field instanceof HTMLInputElement && field.type === 'email' && value) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        return 'Вкажіть коректний email.';
+      }
+    }
+
+    return '';
   };
 
   const validateForm = () => {
     if (!form) return false;
     let valid = true;
-    const requiredFields = form.querySelectorAll('[required]');
+    const fields = form.querySelectorAll('input, select, textarea');
 
-    requiredFields.forEach((field) => {
-      const input = field;
-      let fieldValid = true;
-
-      if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement || input instanceof HTMLSelectElement) {
-        if (!input.value.trim()) {
-          fieldValid = false;
-        }
-
-        if (fieldValid && input.type === 'email') {
-          fieldValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
-        }
-      }
-
-      setFieldError(input, !fieldValid);
-      if (!fieldValid) valid = false;
+    fields.forEach((field) => {
+      if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement)) return;
+      if (field.name === 'website' || field.type === 'hidden') return;
+      const message = validateField(field);
+      setFieldError(field, message);
+      if (message) valid = false;
     });
 
     return valid;
   };
 
+  const renderSuccessPanel = () => {
+    if (!formPanel) return;
+    formPanel.classList.add('is-success');
+    formPanel.innerHTML = `
+      <div class="success-panel panel">
+        <div class="eyebrow">Запит надіслано</div>
+        <h3>Дякую. Запит отримано.</h3>
+        <p>Повернемось із короткою відповіддю після перегляду контексту.</p>
+      </div>
+    `;
+  };
+
+  const applyServerFallbackState = () => {
+    const params = new URLSearchParams(window.location.search);
+    const formState = params.get('form');
+
+    if (formState === 'success') {
+      renderSuccessPanel();
+      pushTrackingEvent('form_success', { source: 'server_redirect' });
+      history.replaceState({}, document.title, `${window.location.pathname}#contact`);
+      return;
+    }
+
+    if (formState === 'error' && formStatus) {
+      formStatus.textContent = 'Не вдалося надіслати запит. Спробуйте ще раз.';
+      formStatus.className = 'form-status is-error';
+      history.replaceState({}, document.title, `${window.location.pathname}#contact`);
+    }
+  };
+
   if (form && formPanel && formStatus) {
     startedAtInput.value = String(Date.now());
+    applyServerFallbackState();
 
     form.addEventListener('input', (event) => {
       const target = event.target;
       if (!(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement)) return;
-      if (target.required || target.type === 'email') {
-        setFieldError(target, false);
-      }
+      const message = validateField(target);
+      setFieldError(target, message);
       formStatus.textContent = '';
       formStatus.className = 'form-status';
     });
@@ -231,16 +320,10 @@
 
         pushTrackingEvent('form_success', {
           interest: String(formData.get('interest') || ''),
+          source: 'ajax',
         });
 
-        formPanel.classList.add('is-success');
-        formPanel.innerHTML = `
-          <div class="success-panel panel">
-            <div class="eyebrow">Запит надіслано</div>
-            <h3>Дякую. Запит отримано.</h3>
-            <p>Повернемось із короткою відповіддю після перегляду контексту.</p>
-          </div>
-        `;
+        renderSuccessPanel();
       } catch (error) {
         formStatus.textContent = error instanceof Error ? error.message : 'Сталася помилка. Спробуйте ще раз.';
         formStatus.classList.add('is-error');

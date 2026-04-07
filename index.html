@@ -58,9 +58,10 @@
           type="button"
           aria-expanded="false"
           aria-controls="site-nav"
+          aria-label="Відкрити меню"
           data-nav-toggle
         >
-          <span class="sr-only">Відкрити навігацію</span>
+          <span class="sr-only">Відкрити меню</span>
           <span></span>
           <span></span>
         </button>
@@ -101,13 +102,6 @@
           <div class="hero-scene fade-in" aria-hidden="true">
             <div class="scene-frame">
               <svg class="scene-traces" viewBox="0 0 720 540" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="trace" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="rgba(124,145,255,0.04)" />
-                    <stop offset="50%" stop-color="rgba(124,145,255,0.35)" />
-                    <stop offset="100%" stop-color="rgba(124,145,255,0.06)" />
-                  </linearGradient>
-                </defs>
                 <path d="M85 130h120c26 0 34 18 34 34v12c0 18 10 28 28 28h104" class="trace-path"></path>
                 <path d="M394 205h112c20 0 30 10 30 30v52c0 15 8 22 22 22h74" class="trace-path"></path>
                 <path d="M190 338h105c22 0 30 -12 30 -28v-18c0 -18 10 -26 26 -26h84" class="trace-path"></path>
@@ -315,15 +309,18 @@
         <div class="container">
           <div class="testimonial-row fade-in">
             <article class="panel testimonial-card">
-              <p>“Вперше з’явився формат, де договірна робота не зависає між sales, finance і legal.”</p>
+              <div class="proof-kicker">Proof</div>
+              <p>Після запуску формату договірні питання перестають зависати між sales, finance і operations.</p>
               <div class="testimonial-meta">COO · SaaS-компанія</div>
             </article>
             <article class="panel testimonial-card">
-              <p>“Найцінніше — короткі письмові позиції, які можна одразу переслати в операційну роботу.”</p>
+              <div class="proof-kicker">Proof</div>
+              <p>Найкраще працюють короткі письмові позиції, які команда може одразу передати далі в роботу.</p>
               <div class="testimonial-meta">Operations lead · сервісна ІТ-команда</div>
             </article>
             <article class="panel testimonial-card">
-              <p>“Review став передбачуваним: ми знаємо, коли йдемо в пакет, а коли в окремий scope.”</p>
+              <div class="proof-kicker">Proof</div>
+              <p>Review стає передбачуваним: є межі пакета, окремий scope і зрозумілий next step.</p>
               <div class="testimonial-meta">Founder · digital agency</div>
             </article>
           </div>
@@ -334,7 +331,7 @@
         <div class="container">
           <div class="panel review-shell fade-in">
             <div class="review-copy">
-              <div class="eyebrow">Entry product</div>
+              <div class="eyebrow">Стартовий модуль</div>
               <h2>Contract System Review</h2>
               <p>
                 Стартовий модуль для команди, якій потрібно швидко зрозуміти стан договірної системи, слабкі місця та пріоритети оновлення.
@@ -416,7 +413,7 @@
             </article>
 
             <article class="panel pricing-card pricing-card-featured" data-plan="professional">
-              <div class="pricing-badge">Recommended</div>
+              <div class="pricing-badge">Основний пакет</div>
               <div class="pricing-top">
                 <h3>Professional</h3>
                 <div class="pricing-price">від $900<span>/міс</span></div>
@@ -642,7 +639,7 @@
             <p>Напишіть, що саме потрібно: пакет, review або конкретний формат старту. Відповідь має бути короткою, чистою і по суті.</p>
             <div class="signal-row left-aligned">
               <span class="signal-chip">Inline success state</span>
-              <span class="signal-chip">Без redirect</span>
+              <span class="signal-chip">JS fallback</span>
               <span class="signal-chip">Простий старт</span>
             </div>
           </div>
@@ -652,22 +649,25 @@
               <div class="field-row">
                 <div class="field">
                   <label for="name">Ім’я</label>
-                  <input id="name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Ваше ім’я" />
+                  <input id="name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Ваше ім’я" aria-describedby="name-error" />
+                  <p class="field-error" id="name-error"></p>
                 </div>
                 <div class="field">
                   <label for="email">Email</label>
-                  <input id="email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="name@company.com" />
+                  <input id="email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="name@company.com" aria-describedby="email-error" />
+                  <p class="field-error" id="email-error"></p>
                 </div>
               </div>
 
               <div class="field-row">
                 <div class="field">
                   <label for="company">Компанія</label>
-                  <input id="company" name="company" type="text" autocomplete="organization" maxlength="120" placeholder="Назва компанії" />
+                  <input id="company" name="company" type="text" autocomplete="organization" maxlength="120" placeholder="Назва компанії" aria-describedby="company-error" />
+                  <p class="field-error" id="company-error"></p>
                 </div>
                 <div class="field">
                   <label for="interest">Що цікавить</label>
-                  <select id="interest" name="interest" required>
+                  <select id="interest" name="interest" required aria-describedby="interest-error">
                     <option value="" selected disabled>Оберіть варіант</option>
                     <option value="basic">Basic</option>
                     <option value="professional">Professional</option>
@@ -675,13 +675,15 @@
                     <option value="review">Contract System Review</option>
                     <option value="other">Інше</option>
                   </select>
+                  <p class="field-error" id="interest-error"></p>
                 </div>
               </div>
 
               <div class="field">
                 <label for="message">Коротко про запит</label>
-                <textarea id="message" name="message" rows="5" required maxlength="1800" placeholder="Що саме потрібно, який обсяг договорів або з чим зараз є затримка?"></textarea>
-                <p class="helper-text">2–5 речень достатньо для першого контакту.</p>
+                <textarea id="message" name="message" rows="5" required maxlength="1800" placeholder="Що саме потрібно, який обсяг договорів або з чим зараз є затримка?" aria-describedby="message-help message-error"></textarea>
+                <p class="helper-text" id="message-help">2–5 речень достатньо для першого контакту.</p>
+                <p class="field-error" id="message-error"></p>
               </div>
 
               <div class="hp-field" aria-hidden="true">

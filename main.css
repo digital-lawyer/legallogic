@@ -87,17 +87,18 @@ button {
 }
 
 .skip-link {
-  top: -40px;
+  top: 0;
   left: 12px;
   z-index: 100;
   padding: 0.65rem 0.9rem;
   border-radius: 999px;
   background: #fff;
   color: #0a0d14;
+  transform: translateY(-160%);
 }
 
 .skip-link:focus {
-  top: 12px;
+  transform: translateY(12px);
 }
 
 .sr-only {
@@ -541,7 +542,9 @@ a:focus-visible {
 .form-copy p,
 .footer-copy,
 .closing-note,
-.section-note {
+.section-note,
+.proof-kicker,
+.field-error {
   color: var(--muted);
 }
 
@@ -644,7 +647,8 @@ a:focus-visible {
 .product-tag,
 .pricing-badge,
 .group-title,
-.step-index {
+.step-index,
+.proof-kicker {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-size: 0.72rem;
@@ -891,6 +895,10 @@ a:focus-visible {
   min-height: 11rem;
 }
 
+.proof-kicker {
+  margin-bottom: 0.9rem;
+}
+
 .testimonial-meta {
   display: block;
   margin-top: 1rem;
@@ -1035,7 +1043,8 @@ a:focus-visible {
 .helper-text,
 .form-status,
 .closing-note,
-.footer-copy {
+.footer-copy,
+.field-error {
   font-size: 0.92rem;
 }
 
@@ -1236,6 +1245,11 @@ textarea:focus {
 .field.is-error textarea {
   border-color: rgba(255, 156, 163, 0.54);
   box-shadow: 0 0 0 4px rgba(255, 156, 163, 0.1);
+}
+
+.field-error {
+  min-height: 1rem;
+  color: var(--danger);
 }
 
 .hp-field {
@@ -1584,17 +1598,19 @@ textarea:focus {
     padding: 0.8rem;
   }
 
+  .scene-block ul,
+  .scene-card span,
+  .scene-card .tiny-label {
+    display: none;
+  }
+
   .scene-card {
     width: calc(50% - 1rem);
     padding: 0.75rem;
   }
 
   .scene-card strong {
-    font-size: 0.88rem;
-  }
-
-  .scene-card span {
-    font-size: 0.76rem;
+    font-size: 0.84rem;
   }
 
   .micro-proof,

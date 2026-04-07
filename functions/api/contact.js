@@ -7,6 +7,15 @@ const json = (data, status = 200) =>
     },
   });
 
+const redirect = (url, status = 303) =>
+  new Response(null, {
+    status,
+    headers: {
+      Location: url,
+      'cache-control': 'no-store',
+    },
+  });
+
 const escapeHtml = (value = '') =>
   value
     .replaceAll('&', '&amp;')
@@ -15,13 +24,30 @@ const escapeHtml = (value = '') =>
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
 
+const wantsJson = (request) => {
+  const accept = request.headers.get('accept') || '';
+  return accept.includes('application/json');
+};
+
+const respond = (request, payload, status = 200) => {
+  if (wantsJson(request)) {
+    return json(payload, status);
+  }
+
+  if (status >= 200 && status < 300) {
+    return redirect('/?form=success#contact');
+  }
+
+  return redirect('/?form=error#contact');
+};
+
 export async function onRequestPost(context) {
   try {
     const request = context.request;
     const contentType = request.headers.get('content-type') || '';
 
     if (!contentType.includes('multipart/form-data') && !contentType.includes('application/x-www-form-urlencoded')) {
-      return json({ ok: false, error: 'Unsupported content type.' }, 415);
+      return respond(request, { ok: false, error: 'Unsupported content type.' }, 415);
     }
 
     const formData = await request.formData();
@@ -34,24 +60,24 @@ export async function onRequestPost(context) {
     const startedAt = Number(formData.get('started_at') || 0);
 
     if (website) {
-      return json({ ok: true });
+      return respond(request, { ok: true }, 200);
     }
 
     if (!name || !email || !interest || !message) {
-      return json({ ok: false, error: 'Заповніть обов’язкові поля.' }, 400);
+      return respond(request, { ok: false, error: 'Заповніть обов’язкові поля.' }, 400);
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return json({ ok: false, error: 'Вкажіть коректний email.' }, 400);
+      return respond(request, { ok: false, error: 'Вкажіть коректний email.' }, 400);
     }
 
     if (name.length > 80 || email.length > 120 || company.length > 120 || message.length > 1800) {
-      return json({ ok: false, error: 'Один із полів перевищує допустиму довжину.' }, 400);
+      return respond(request, { ok: false, error: 'Один із полів перевищує допустиму довжину.' }, 400);
     }
 
     const age = Date.now() - startedAt;
     if (!startedAt || age < 2500 || age > 1000 * 60 * 60 * 24) {
-      return json({ ok: false, error: 'Форма не пройшла anti-spam перевірку.' }, 400);
+      return respond(request, { ok: false, error: 'Форма не пройшла anti-spam перевірку.' }, 400);
     }
 
     const resendApiKey = context.env.RESEND_API_KEY;
@@ -59,7 +85,7 @@ export async function onRequestPost(context) {
     const resendFrom = context.env.RESEND_FROM || 'Legal Logic <onboarding@resend.dev>';
 
     if (!resendApiKey || !resendTo) {
-      return json({ ok: false, error: 'Не налаштовано відправку листів на сервері.' }, 500);
+      return respond(request, { ok: false, error: 'Не налаштовано відправку листів на сервері.' }, 500);
     }
 
     const bodyHtml = `
@@ -90,12 +116,12 @@ export async function onRequestPost(context) {
     if (!resendResponse.ok) {
       const errorPayload = await resendResponse.text();
       console.error('Resend API error:', errorPayload);
-      return json({ ok: false, error: 'Не вдалося надіслати запит. Спробуйте ще раз.' }, 502);
+      return respond(request, { ok: false, error: 'Не вдалося надіслати запит. Спробуйте ще раз.' }, 502);
     }
 
-    return json({ ok: true });
+    return respond(request, { ok: true }, 200);
   } catch (error) {
     console.error('Contact form error:', error);
-    return json({ ok: false, error: 'Внутрішня помилка сервера.' }, 500);
+    return respond(context.request, { ok: false, error: 'Внутрішня помилка сервера.' }, 500);
   }
 }
