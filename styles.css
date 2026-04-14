@@ -511,55 +511,8 @@ textarea {
   overflow: hidden;
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-md);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(180deg, rgba(18, 22, 46, 0.92), rgba(9, 12, 28, 0.82));
   box-shadow: var(--shadow-soft);
-}
-
-.mini-card::before,
-.feature-card::before,
-.process-card::before,
-.principle-card::before,
-.testimonial-card::before,
-.pricing-card::before,
-.scope-card::before,
-.decision-card::before,
-.problem-card::before,
-.timeline-card::before,
-.signal-card::before,
-.contact-form::before,
-.pricing-highlight::before,
-.add-on-table::before,
-.faq-item::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
-  opacity: 0.85;
-  pointer-events: none;
-}
-
-.mini-card::after,
-.feature-card::after,
-.process-card::after,
-.principle-card::after,
-.testimonial-card::after,
-.pricing-card::after,
-.scope-card::after,
-.decision-card::after,
-.problem-card::after,
-.timeline-card::after,
-.signal-card::after,
-.contact-form::after,
-.pricing-highlight::after {
-  content: "";
-  position: absolute;
-  inset: auto -8% 62% auto;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(141, 129, 255, 0.12), transparent 72%);
-  pointer-events: none;
 }
 
 .mini-card {
@@ -784,18 +737,27 @@ textarea {
 }
 
 .section-heading {
-  max-width: 760px;
-  margin-bottom: 28px;
+  display: grid;
+  justify-items: center;
+  max-width: 960px;
+  margin: 0 auto 32px;
+  text-align: center;
 }
 
 .section-heading-left {
+  justify-items: start;
+  max-width: 760px;
   margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
 }
 
 .section-heading h2 {
   margin-top: 16px;
   font-size: clamp(1.75rem, 4.8vw, 3.5rem);
   line-height: 1.04;
+  max-width: 18ch;
   text-wrap: balance;
 }
 
@@ -803,6 +765,19 @@ textarea {
   margin: 16px 0 0;
   max-width: 60ch;
   line-height: 1.72;
+}
+
+.section-heading .eyebrow {
+  justify-self: center;
+}
+
+.section-heading-left .eyebrow {
+  justify-self: start;
+}
+
+.section-heading-left h2,
+.section-heading-left p {
+  max-width: none;
 }
 
 .audience-grid,
@@ -832,30 +807,14 @@ textarea {
   padding: 22px 20px;
 }
 
-.feature-card {
-  background:
-    linear-gradient(180deg, rgba(18, 23, 50, 0.92), rgba(10, 13, 30, 0.86)),
-    radial-gradient(circle at top right, rgba(116, 213, 255, 0.08), transparent 34%);
-}
-
-.process-card {
-  background:
-    linear-gradient(180deg, rgba(15, 20, 45, 0.92), rgba(9, 12, 28, 0.88)),
-    radial-gradient(circle at top right, rgba(141, 129, 255, 0.1), transparent 36%);
-}
-
+.feature-card,
+.process-card,
 .principle-card,
 .scope-card,
-.problem-card {
-  background:
-    linear-gradient(180deg, rgba(18, 22, 44, 0.9), rgba(9, 12, 27, 0.84));
-}
-
+.problem-card,
 .testimonial-card,
 .decision-card {
-  background:
-    linear-gradient(180deg, rgba(18, 22, 48, 0.9), rgba(9, 11, 26, 0.9)),
-    radial-gradient(circle at top left, rgba(116, 213, 255, 0.07), transparent 34%);
+  background: linear-gradient(180deg, rgba(18, 22, 46, 0.92), rgba(9, 12, 28, 0.84));
 }
 
 .feature-card h3,
@@ -868,16 +827,26 @@ textarea {
   font-size: clamp(1.24rem, 3vw, 1.7rem);
 }
 
+.feature-card p,
+.process-card p,
+.principle-card p,
+.scope-card p,
+.decision-card p,
+.problem-card p,
+.testimonial-card p {
+  font-size: 0.98rem;
+  line-height: 1.68;
+}
+
 .feature-index,
 .process-step {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
-  min-height: 30px;
-  padding: 0 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  background: none;
   color: var(--accent-cyan);
 }
 
