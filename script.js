@@ -35,6 +35,7 @@ handleHeader();
 window.addEventListener("scroll", handleHeader, { passive: true });
 
 if ("IntersectionObserver" in window) {
+  document.documentElement.classList.add("reveal-ready");
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -79,7 +80,7 @@ if (contactForm && formStatus) {
     }
 
     const body = [
-      "Нова заявка з сайту LegalLogic",
+      "Нова заявка з сайту Legal Logic",
       "",
       `Ім'я: ${payload.name}`,
       `Компанія: ${payload.company || "-"}`,
@@ -92,7 +93,7 @@ if (contactForm && formStatus) {
     ].join("\n");
 
     const mailto = `mailto:hello@legallogic.org?subject=${encodeURIComponent(
-      `LegalLogic — ${payload.requestType}`
+      `Legal Logic — ${payload.requestType}`
     )}&body=${encodeURIComponent(body)}`;
 
     try {

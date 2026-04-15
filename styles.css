@@ -114,7 +114,15 @@ textarea {
 }
 
 .section {
-  padding: 72px 0;
+  padding: 68px 0;
+}
+
+.section-compact {
+  padding: 52px 0;
+}
+
+.section-large {
+  padding: 84px 0;
 }
 
 .section-surface,
@@ -340,14 +348,19 @@ textarea {
 }
 
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(18px);
+  opacity: 1;
+  transform: none;
   transition:
     opacity 560ms ease,
     transform 560ms ease;
 }
 
-[data-reveal].is-visible {
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.reveal-ready [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -382,14 +395,14 @@ textarea {
 .pricing-highlight strong {
   margin: 0;
   letter-spacing: -0.05em;
-  line-height: 1.02;
+  line-height: 1.08;
 }
 
 .hero h1 {
   margin-top: 16px;
   font-size: clamp(1.95rem, 6vw, 4.55rem);
-  line-height: 0.96;
-  max-width: 9.7ch;
+  line-height: 1.02;
+  max-width: 12ch;
   text-wrap: balance;
 }
 
@@ -756,13 +769,13 @@ textarea {
 .section-heading h2 {
   margin-top: 16px;
   font-size: clamp(1.75rem, 4.8vw, 3.5rem);
-  line-height: 1.04;
-  max-width: 18ch;
+  line-height: 1.12;
+  max-width: 23ch;
   text-wrap: balance;
 }
 
 .section-heading p {
-  margin: 16px 0 0;
+  margin: 20px 0 0;
   max-width: 60ch;
   line-height: 1.72;
 }
@@ -787,7 +800,8 @@ textarea {
 .pricing-grid,
 .scope-grid,
 .decision-grid,
-.problem-grid {
+.problem-grid,
+.about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 16px;
@@ -804,7 +818,7 @@ textarea {
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  padding: 22px 20px;
+  padding: 26px 24px;
 }
 
 .feature-card,
@@ -962,7 +976,7 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 24px 20px;
+  padding: 28px 24px;
 }
 
 .pricing-card.featured {
@@ -973,6 +987,14 @@ textarea {
   box-shadow:
     0 22px 60px rgba(10, 12, 30, 0.4),
     0 0 0 1px rgba(147, 164, 255, 0.14);
+}
+
+.pricing-card .stack-list {
+  margin-bottom: 0;
+}
+
+.pricing-card .caption {
+  margin-bottom: 0;
 }
 
 .pricing-card .button,
@@ -1020,6 +1042,8 @@ textarea {
   display: grid;
   gap: 0;
   overflow: hidden;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .add-on-table div {
@@ -1206,7 +1230,7 @@ textarea {
 }
 
 .site-footer {
-  padding-top: 18px;
+  padding-top: 10px;
 }
 
 .footer-shell {
@@ -1304,15 +1328,23 @@ textarea {
   .hero-mini-grid,
   .audience-grid,
   .process-grid,
-  .principles-grid,
   .testimonial-grid,
   .decision-grid,
-  .problem-grid {
+  .problem-grid,
+  .about-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .section {
-    padding: 84px 0;
+    padding: 76px 0;
+  }
+
+  .section-compact {
+    padding: 58px 0;
+  }
+
+  .section-large {
+    padding: 92px 0;
   }
 
   .feature-card,
@@ -1343,7 +1375,15 @@ textarea {
 
 @media (min-width: 1100px) {
   .section {
-    padding: 110px 0;
+    padding: 78px 0;
+  }
+
+  .section-compact {
+    padding: 60px 0;
+  }
+
+  .section-large {
+    padding: 98px 0;
   }
 
   .nav-shell {
@@ -1402,24 +1442,31 @@ textarea {
   }
 
   .audience-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .process-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .principles-grid,
   .testimonial-grid,
   .pricing-grid,
   .scope-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .about-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .decision-grid,
   .problem-grid,
   .stage-rail {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #scope .split-section {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
   }
 
   .pricing-card.featured {
