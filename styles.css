@@ -15,7 +15,7 @@
   --shadow-soft: 0 18px 44px rgba(4, 7, 17, 0.32);
   --radius-md: 24px;
   --radius-lg: 32px;
-  --container: min(1160px, calc(100vw - 32px));
+  --container: min(1160px, calc(100% - 32px));
   --font-body: "Manrope", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
   --transition: 180ms ease;
@@ -29,11 +29,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: clip;
   background:
     radial-gradient(circle at 12% 18%, rgba(116, 213, 255, 0.12), transparent 26%),
     radial-gradient(circle at 82% 14%, rgba(141, 129, 255, 0.28), transparent 26%),
@@ -647,6 +649,11 @@ textarea {
 .pricing-card-head,
 .highlight-price,
 .footer-meta .container {
+  flex-wrap: wrap;
+}
+
+.stage-topbar,
+.matter-meta {
   flex-wrap: wrap;
 }
 
