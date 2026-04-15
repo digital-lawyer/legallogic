@@ -35,6 +35,7 @@ handleHeader();
 window.addEventListener("scroll", handleHeader, { passive: true });
 
 if ("IntersectionObserver" in window) {
+  document.documentElement.classList.add("reveal-ready");
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
